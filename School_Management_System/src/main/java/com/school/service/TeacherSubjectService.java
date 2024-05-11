@@ -8,9 +8,9 @@ import com.school.request.TeacherSubjectRequest;
 
 public interface TeacherSubjectService {
 
-	boolean saveTeacherSubject(TeacherSubjectRequest teacherSubjectRequest, String institute_id);
+	TeacherSubject saveTeacherSubject(TeacherSubjectRequest teacherSubjectRequest, String institute_id);
 
-	boolean updateTeacherSubject(TeacherSubjectRequest teacherSubjectRequest, String institute_id, int mapped_id);
+	TeacherSubject updateTeacherSubject(TeacherSubjectRequest teacherSubjectRequest, String institute_id, int mapped_id);
 
 	List<TeacherSubject> getAllTeacherSubjects(String institute_id);
 

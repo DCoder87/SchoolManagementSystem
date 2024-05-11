@@ -21,8 +21,6 @@ import com.school.commom.responses.JsonResponses;
 import com.school.request.TeacherSubjectRequest;
 import com.school.service.TeacherSubjectService;
 
-
-
 @RestController
 @RequestMapping("/teachersubject")
 public class TeacherSubjectController {
@@ -48,9 +46,10 @@ public class TeacherSubjectController {
 	public Map<String, Object> addTeacherSubject(@PathVariable String institute_id,
 			@RequestBody TeacherSubjectRequest teacherSubjectRequest) {
 
-		boolean savedTeacherSubject = teacherSubjectService.saveTeacherSubject(teacherSubjectRequest, institute_id);
+		TeacherSubject savedTeacherSubject = teacherSubjectService.saveTeacherSubject(teacherSubjectRequest,
+				institute_id);
 
-		if (savedTeacherSubject) {
+		if (savedTeacherSubject != null) {
 			return JsonResponses.generateResponse1(true, savedTeacherSubject, "Teacher Subject Added Successfully");
 		} else {
 			return JsonResponses.generateResponse1(false, teacherSubjectRequest, "Some Data is Null or Invalid");
@@ -60,11 +59,11 @@ public class TeacherSubjectController {
 	@PutMapping("/update/{institute_id}/{mapped_id}")
 	public Map<String, Object> updateTeacherSubjectById(@PathVariable String institute_id, @PathVariable int mapped_id,
 			@RequestBody TeacherSubjectRequest teacherSubjectRequest) {
-		
-		boolean updatedTeacherSubject = teacherSubjectService.updateTeacherSubject(teacherSubjectRequest, institute_id,
-				mapped_id);
-		
-		if (updatedTeacherSubject) {
+
+		TeacherSubject updatedTeacherSubject = teacherSubjectService.updateTeacherSubject(teacherSubjectRequest,
+				institute_id, mapped_id);
+
+		if (updatedTeacherSubject != null) {
 			return JsonResponses.generateResponse1(true, teacherSubjectRequest,
 					"Teacher Subject Data Updated Successfully");
 		} else {

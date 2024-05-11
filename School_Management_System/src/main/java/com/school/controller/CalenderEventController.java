@@ -21,8 +21,6 @@ import com.school.commom.responses.JsonResponses;
 import com.school.request.CalenderEventRequest;
 import com.school.service.CalenderEventService;
 
-
-
 @RestController
 @RequestMapping("/calendarevent")
 public class CalenderEventController {
@@ -46,12 +44,12 @@ public class CalenderEventController {
 	@PostMapping("/{institute_id}")
 	public Map<String, Object> addCalendarEvent(@PathVariable String institute_id,
 			@RequestBody CalenderEventRequest calenderEventRequest) {
-		
+
 		System.out.println(calenderEventRequest.getEvent_description());
 
-		boolean savedCalendarEvent = calendarEventService.saveCalendarEvent(calenderEventRequest, institute_id);
+		CalenderEvent savedCalendarEvent = calendarEventService.saveCalendarEvent(calenderEventRequest, institute_id);
 
-		if (savedCalendarEvent) {
+		if (savedCalendarEvent != null) {
 			return JsonResponses.generateResponse1(true, savedCalendarEvent, "Calendar Event Added Successfully");
 		} else {
 			return JsonResponses.generateResponse1(false, calenderEventRequest, "Some Data is Null or Invalid");
@@ -62,10 +60,10 @@ public class CalenderEventController {
 	public Map<String, Object> updateCalendarEventById(@PathVariable String institute_id, @PathVariable int event_id,
 			@RequestBody CalenderEventRequest calenderEventRequest) {
 
-		boolean updatedCalendarEvent = calendarEventService.updateCalendarEvent(calenderEventRequest, institute_id,
-				event_id);
+		CalenderEvent updatedCalendarEvent = calendarEventService.updateCalendarEvent(calenderEventRequest,
+				institute_id, event_id);
 
-		if (updatedCalendarEvent) {
+		if (updatedCalendarEvent != null) {
 			return JsonResponses.generateResponse1(true, calenderEventRequest, "Calendar Event Updated Successfully");
 		} else {
 			return JsonResponses.generateResponse1(false, event_id,

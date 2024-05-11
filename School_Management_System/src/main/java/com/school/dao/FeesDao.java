@@ -33,7 +33,7 @@ public class FeesDao implements FeesService {
     }
 
     @Override
-    public boolean saveFees(FeesRequest feesRequest, String institute_id) {
+    public Fees saveFees(FeesRequest feesRequest, String institute_id) {
 
         String institute_id1 = decrypt.Decryption(institute_id);
         int i_id = Integer.parseInt(institute_id1);
@@ -58,15 +58,15 @@ public class FeesDao implements FeesService {
             fees.setStatus(1);
             fees.setInstitute(institute);
 
-            feesRepository.save(fees);
-            return true;
+           
+            return  feesRepository.save(fees);
         } catch (Exception e) {
-            return false;
+            return null;
         }
     }
 
     @Override
-    public boolean updateFees(FeesRequest feesRequest, String institute_id, int id) {
+    public Fees updateFees(FeesRequest feesRequest, String institute_id, int id) {
         String institute_id1 = decrypt.Decryption(institute_id);
         int i_id = Integer.parseInt(institute_id1);
 
@@ -92,10 +92,10 @@ public class FeesDao implements FeesService {
             fees.setFee_id(id);
             fees.setInstitute(institute);
 
-            feesRepository.save(fees);
-            return true;
+            
+            return feesRepository.save(fees);
         } catch (Exception e) {
-            return false;
+            return null;
         }
     }
 

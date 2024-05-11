@@ -1,33 +1,33 @@
 package com.school.beans;
-
 import java.sql.Time;
 import java.util.Date;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class StudentAttendance {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name = "StudentAttendance_count", initialValue = 1, allocationSize = 1)
 	private int student_attendance_id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // Ignore Hibernate-specific fields
+	@NotNull
+	@ManyToOne(cascade = {CascadeType.REFRESH})
 	@JoinColumn(name = "student_id")
 	private Student student_id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // Ignore Hibernate-specific fields
+	@NotNull
+	@ManyToOne(cascade = {CascadeType.REFRESH})
 	@JoinColumn(name = "institute_id")
 	private Institute institute;
 

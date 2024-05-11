@@ -21,8 +21,6 @@ import com.school.commom.responses.JsonResponses;
 import com.school.request.ExamScheduleRequest;
 import com.school.service.ExamScheduleService;
 
-
-
 @RestController
 @RequestMapping("/examschedule")
 public class ExamScheduleController {
@@ -47,9 +45,9 @@ public class ExamScheduleController {
 	public Map<String, Object> addExamSchedule(@PathVariable String institute_id,
 			@RequestBody ExamScheduleRequest examScheduleRequest) {
 
-		boolean savedExamSchedule = examScheduleService.saveExamSchedule(examScheduleRequest, institute_id);
+		ExamSchedule savedExamSchedule = examScheduleService.saveExamSchedule(examScheduleRequest, institute_id);
 
-		if (savedExamSchedule) {
+		if (savedExamSchedule != null) {
 			return JsonResponses.generateResponse1(true, savedExamSchedule, "Exam Schedule Added Successfully");
 
 		} else {
@@ -61,10 +59,10 @@ public class ExamScheduleController {
 	public Map<String, Object> updateExamScheduleById(@PathVariable String institute_id, @PathVariable int exam_id,
 			@RequestBody ExamScheduleRequest examScheduleRequest) {
 
-		boolean updatedExamSchedule = examScheduleService.updateExamSchedule(examScheduleRequest, institute_id,
+		ExamSchedule updatedExamSchedule = examScheduleService.updateExamSchedule(examScheduleRequest, institute_id,
 				exam_id);
 
-		if (updatedExamSchedule) {
+		if (updatedExamSchedule != null) {
 			return JsonResponses.generateResponse1(true, examScheduleRequest,
 					"Exam Schedule Data Updated Successfully");
 		} else {

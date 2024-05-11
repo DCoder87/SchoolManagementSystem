@@ -6,9 +6,9 @@ import com.school.beans.Teacher;
 
 public interface TeacherService {
 
-	public Teacher saveTeacher(Teacher teacher);
+	Teacher saveTeacher(Teacher teacher);
 
-	public Teacher updateTeacher(Teacher teacher);
+	Teacher updateTeacher(Teacher teacher);
 
 	List<Teacher> getallTeachers(String institute_id);
 

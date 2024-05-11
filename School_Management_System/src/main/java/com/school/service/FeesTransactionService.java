@@ -8,9 +8,9 @@ import com.school.request.FeesTransactionRequest;
 
 public interface FeesTransactionService {
 
-    boolean saveFeesTransaction(FeesTransactionRequest feesTransactionRequest, String institute_id);
+    FeesTransaction saveFeesTransaction(FeesTransactionRequest feesTransactionRequest, String institute_id);
 
-    boolean updateFeesTransaction(FeesTransactionRequest feesTransactionRequest, String institute_id, int id);
+    FeesTransaction updateFeesTransaction(FeesTransactionRequest feesTransactionRequest, String institute_id, int id);
 
     List<FeesTransaction> getallFeesTransactions(String institute_id);
 

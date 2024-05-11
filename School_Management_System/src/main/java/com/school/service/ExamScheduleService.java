@@ -8,9 +8,9 @@ import com.school.request.ExamScheduleRequest;
 
 public interface ExamScheduleService {
 
-	public boolean saveExamSchedule(ExamScheduleRequest examRequest, String institute_id);
+	ExamSchedule saveExamSchedule(ExamScheduleRequest examRequest, String institute_id);
 
-	boolean updateExamSchedule(ExamScheduleRequest examRequest, String institute_id, int id);
+	ExamSchedule updateExamSchedule(ExamScheduleRequest examRequest, String institute_id, int id);
 
 	List<ExamSchedule> getallExamSchedules(String institute_id);
 

@@ -10,9 +10,9 @@ public interface CalenderEventService {
 
 	List<CalenderEvent> getAllCalendarEvents(String institute_id);
 
-	boolean saveCalendarEvent(CalenderEventRequest calendarEventRequest, String institute_id);
+	CalenderEvent saveCalendarEvent(CalenderEventRequest calendarEventRequest, String institute_id);
 
-	boolean updateCalendarEvent(CalenderEventRequest calendarEventRequest, String institute_id, int id);
+	CalenderEvent updateCalendarEvent(CalenderEventRequest calendarEventRequest, String institute_id, int id);
 
 	Optional<CalenderEvent> findCalendarEventById(int id, String institute_id);
 

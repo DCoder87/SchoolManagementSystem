@@ -34,7 +34,7 @@ public class TeacherSubjectDao implements TeacherSubjectService {
 	}
 
 	@Override
-	public boolean saveTeacherSubject(TeacherSubjectRequest teacherSubjectRequest, String institute_id) {
+	public TeacherSubject saveTeacherSubject(TeacherSubjectRequest teacherSubjectRequest, String institute_id) {
 
 		String institute_id1 = decrypt.Decryption(institute_id);
 		int i_id = Integer.parseInt(institute_id1);
@@ -60,15 +60,14 @@ public class TeacherSubjectDao implements TeacherSubjectService {
 			teacherSubject.setTeacher(teacher);
 			teacherSubject.setStatus(i_id);
 
-			teacherSubjectRepository.save(teacherSubject);
-			return true;
+			return teacherSubjectRepository.save(teacherSubject);
 		} catch (Exception e) {
-			return false;
+			return null;
 		}
 	}
 
 	@Override
-	public boolean updateTeacherSubject(TeacherSubjectRequest teacherSubjectRequest, String institute_id,
+	public TeacherSubject updateTeacherSubject(TeacherSubjectRequest teacherSubjectRequest, String institute_id,
 			int mapped_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
 		int i_id = Integer.parseInt(institute_id1);
@@ -95,10 +94,9 @@ public class TeacherSubjectDao implements TeacherSubjectService {
 			teacherSubject.setStatus(i_id);
 			teacherSubject.setMapped_id(mapped_id);
 
-			teacherSubjectRepository.save(teacherSubject);
-			return true;
+			return teacherSubjectRepository.save(teacherSubject);
 		} catch (Exception e) {
-			return false;
+			return null;
 		}
 	}
 

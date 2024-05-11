@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class TeacherAttendanceRequest {
 
-	private int institute_id;
-
 	private int teacher_id;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -57,10 +55,6 @@ public class TeacherAttendanceRequest {
 
 	public int getYear_id() {
 		return year_id;
-	}
-
-	public int getInstitute_id() {
-		return institute_id;
 	}
 
 }

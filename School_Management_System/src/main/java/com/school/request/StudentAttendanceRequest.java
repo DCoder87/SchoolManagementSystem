@@ -3,22 +3,11 @@ package com.school.request;
 import java.sql.Time;
 import java.util.Date;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class StudentAttendanceRequest {
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // Ignore Hibernate-specific fields
-	@JoinColumn(name = "student_id")
-	private int student_id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // Ignore Hibernate-specific fields
-	@JoinColumn(name = "institute_id")
-	private int institute_id;
+	private int student_id;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date date;
@@ -64,10 +53,6 @@ public class StudentAttendanceRequest {
 
 	public int getYear_id() {
 		return year_id;
-	}
-
-	public int getInstitute_id() {
-		return institute_id;
 	}
 
 }

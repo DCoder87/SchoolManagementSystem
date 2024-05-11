@@ -27,7 +27,7 @@ public class ExamScheduleDao implements ExamScheduleService {
 	EncryptionAndDecryption decrypt = new EncryptionAndDecryption();
 
 	@Override
-	public boolean saveExamSchedule(ExamScheduleRequest examScheduleRequest, String institute_id) {
+	public ExamSchedule saveExamSchedule(ExamScheduleRequest examScheduleRequest, String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
 		int i_id = Integer.parseInt(institute_id1);
 
@@ -52,15 +52,14 @@ public class ExamScheduleDao implements ExamScheduleService {
 			examSchedule.setStatus(i_id);
 			examSchedule.setInstitute(institute);
 
-			examScheduleRepository.save(examSchedule);
-			return true;
+			return examScheduleRepository.save(examSchedule);
 		} catch (Exception e) {
-			return false;
+			return null;
 		}
 	}
 
 	@Override
-	public boolean updateExamSchedule(ExamScheduleRequest examScheduleRequest, String institute_id, int id) {
+	public ExamSchedule updateExamSchedule(ExamScheduleRequest examScheduleRequest, String institute_id, int id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
 		int i_id = Integer.parseInt(institute_id1);
 
@@ -86,10 +85,9 @@ public class ExamScheduleDao implements ExamScheduleService {
 			examSchedule.setStatus(i_id);
 			examSchedule.setInstitute(institute);
 
-			examScheduleRepository.save(examSchedule);
-			return true;
+			return examScheduleRepository.save(examSchedule);
 		} catch (Exception e) {
-			return false;
+			return null;
 		}
 	}
 

@@ -31,7 +31,7 @@ public class CalenderEventDao implements CalenderEventService {
 	}
 
 	@Override
-	public boolean saveCalendarEvent(CalenderEventRequest calendarEventRequest, String institute_id) {
+	public CalenderEvent saveCalendarEvent(CalenderEventRequest calendarEventRequest, String institute_id) {
 
 		String institute_id1 = decrypt.Decryption(institute_id);
 		int i_id = Integer.parseInt(institute_id1);
@@ -50,14 +50,14 @@ public class CalenderEventDao implements CalenderEventService {
 			calendarEvent.setInstitute(institute);
 
 			calendarEventRepository.save(calendarEvent);
-			return true;
+			return calendarEventRepository.save(calendarEvent);
 		} catch (Exception e) {
-			return false;
+			return null;
 		}
 	}
 
 	@Override
-	public boolean updateCalendarEvent(CalenderEventRequest calendarEventRequest, String institute_id, int id) {
+	public CalenderEvent updateCalendarEvent(CalenderEventRequest calendarEventRequest, String institute_id, int id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
 		int i_id = Integer.parseInt(institute_id1);
 
@@ -76,9 +76,9 @@ public class CalenderEventDao implements CalenderEventService {
 			calendarEvent.setInstitute(institute);
 
 			calendarEventRepository.save(calendarEvent);
-			return true;
+			return calendarEventRepository.save(calendarEvent);
 		} catch (Exception e) {
-			return false;
+			return null;
 		}
 	}
 
