@@ -8,9 +8,7 @@ public class FeesTransactionRequest {
 	
 	private int student_id;
 	
-	private int type_id;
-	
-	private Date transaction_date;	
+	private int type_id;	
 	    
 	private Date next_due_date;
 	
@@ -32,9 +30,6 @@ public class FeesTransactionRequest {
 		return type_id;
 	}
 
-	public Date getTransaction_date() {
-		return transaction_date;
-	}
 
 	public Date getNext_due_date() {
 		return next_due_date;
@@ -55,9 +50,10 @@ public class FeesTransactionRequest {
 	@Override
 	public String toString() {
 		return "FeesTransactionRequest [fee_id=" + fee_id + ", student_id=" + student_id + ", type_id=" + type_id
-				+ ", transaction_date=" + transaction_date + ", next_due_date=" + next_due_date + ", paid_amount="
-				+ paid_amount + ", amount_type=" + amount_type + ", bill_status=" + bill_status + "]";
+				+ ", next_due_date=" + next_due_date + ", paid_amount=" + paid_amount + ", amount_type=" + amount_type
+				+ ", bill_status=" + bill_status + "]";
 	}
-    
+
+	
     
 }

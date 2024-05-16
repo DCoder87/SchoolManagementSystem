@@ -1,11 +1,13 @@
 package com.school.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.school.beans.Fees;
 import com.school.beans.FeesTransaction;
 import com.school.beans.Institute;
@@ -24,6 +26,9 @@ public class FeesTransactionDao implements FeesTransactionService {
 
 	@Autowired
 	InstituteRepository institutionRepository;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	Date today = new Date();
 
 	EncryptionAndDecryption decrypt = new EncryptionAndDecryption();
 
@@ -59,7 +64,7 @@ public class FeesTransactionDao implements FeesTransactionService {
 			feesTransaction.setNext_due_date(feesTransactionRequest.getNext_due_date());
 			feesTransaction.setPaid_amount(feesTransactionRequest.getPaid_amount());
 			feesTransaction.setStudent(student);
-			feesTransaction.setTransaction_date(feesTransactionRequest.getTransaction_date());
+			feesTransaction.setTransaction_date(today);
 			feesTransaction.setTypemaster(transactiontypemaster);
 			feesTransaction.setStatus(i_id);
 			feesTransaction.setInstitute(institute);
@@ -96,7 +101,6 @@ public class FeesTransactionDao implements FeesTransactionService {
 			feesTransaction.setNext_due_date(feesTransactionRequest.getNext_due_date());
 			feesTransaction.setPaid_amount(feesTransactionRequest.getPaid_amount());
 			feesTransaction.setStudent(student);
-			feesTransaction.setTransaction_date(feesTransactionRequest.getTransaction_date());
 			feesTransaction.setTypemaster(transactiontypemaster);
 			feesTransaction.setStatus(i_id);
 			feesTransaction.setTransaction_id(id);
