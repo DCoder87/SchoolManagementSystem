@@ -13,16 +13,16 @@ import com.school.beans.Books;
 @Repository
 public interface BookRepository extends JpaRepository<Books,Integer> {
 
-	@Query(value="SELECT * FROM books  WHERE book_id = :book_id AND Institute_id =:Institute_id", nativeQuery = true)
-	Books findByBook_id(@Param("book_id") int book_id,@Param("Institute_id") int Institute_id);
+	@Query(value="SELECT * FROM books  WHERE book_id = :book_id AND institute_id =:institute_id", nativeQuery = true)
+	Books findByBook_id(@Param("book_id") int book_id,@Param("institute_id") String institute_id);
 	
-	@Query(value = "SELECT * FROM books WHERE status=1 AND Institute_id =:Institute_id", nativeQuery = true)
-	List<Books> getAllActiveBooks(@Param("Institute_id") int Institute_id);
+	@Query(value = "SELECT * FROM books WHERE status=1 AND institute_id =:institute_id", nativeQuery = true)
+	List<Books> getAllActiveBooks(@Param("institute_id") String institute_id);
 	
-	@Query(value = "SELECT * FROM books WHERE status=0 AND Institute_id =:Institute_id", nativeQuery = true)
-	List<Books> getAllDeactiveBooks(@Param("Institute_id") int Institute_id);
+	@Query(value = "SELECT * FROM books WHERE status=0 AND institute_id =:institute_id", nativeQuery = true)
+	List<Books> getAllDeactiveBooks(@Param("institute_id") String institute_id);
 	
-	@Query(value = "SELECT * FROM books WHERE Institute_id =:Institute_id", nativeQuery = true)
-	List<Books> getAllBooks(@Param("Institute_id") int Institute_id);
+	@Query(value = "SELECT * FROM books WHERE institute_id =:institute_id", nativeQuery = true)
+	List<Books> getAllBooks(@Param("institute_id") String institute_id);
 	
 }

@@ -115,7 +115,7 @@ public class GuestDao implements GuestService {
 	@Override
 	public int deleteGuestById(int id, String institute_id) {
 		String institute_id1  = decrypt.Decryption(institute_id);
-		int deleted = guestRepository.deleteByGuestId(id, institute_id1);
+		int deleted = guestRepository.deleteByGuestId(id,institute_id1);
 		if (deleted == 1) {
 			return 1;
 		} else {

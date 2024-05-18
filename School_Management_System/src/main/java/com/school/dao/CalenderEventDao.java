@@ -46,7 +46,7 @@ public class CalenderEventDao implements CalenderEventService {
 			calendarEvent.setEvent_type(calendarEventRequest.getEvent_type());
 			calendarEvent.setStart_date(calendarEventRequest.getStart_date());
 			calendarEvent.setEnd_date(calendarEventRequest.getEnd_date());
-			calendarEvent.setStatus(i_id);
+			calendarEvent.setStatus(1);
 			calendarEvent.setInstitute(institute);
 
 			calendarEventRepository.save(calendarEvent);
@@ -72,7 +72,7 @@ public class CalenderEventDao implements CalenderEventService {
 			calendarEvent.setEvent_type(calendarEventRequest.getEvent_type());
 			calendarEvent.setStart_date(calendarEventRequest.getStart_date());
 			calendarEvent.setEnd_date(calendarEventRequest.getEnd_date());
-			calendarEvent.setStatus(i_id);
+			calendarEvent.setStatus(1);
 			calendarEvent.setInstitute(institute);
 
 			calendarEventRepository.save(calendarEvent);

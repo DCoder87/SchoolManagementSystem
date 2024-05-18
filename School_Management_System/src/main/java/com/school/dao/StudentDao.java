@@ -55,7 +55,7 @@ public class StudentDao implements StudentService {
 			student.setParent(parent);
 			student.setPrevious_school(studentRequest.getPrevious_school());
 			student.setStudent_name(studentRequest.getStudent_name());
-			student.setStatus(i_id);
+			student.setStatus(1);
 			student.setInstitute(institute);
 
 			return studentRepository.save(student);
@@ -85,7 +85,7 @@ public class StudentDao implements StudentService {
 			student.setParent(parent);			
 			student.setPrevious_school(studentRequest.getPrevious_school());
 			student.setStudent_name(studentRequest.getStudent_name());
-			student.setStatus(i_id);
+			student.setStatus(1);
 			student.setStudent_id(id);
 			student.setInstitute(institute);
 

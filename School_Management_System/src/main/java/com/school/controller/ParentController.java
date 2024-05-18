@@ -55,7 +55,7 @@ public class ParentController {
 	
 	
 	@PutMapping("/update/{institute_id}/{parent_id}")
-	public Map<String, Object> updateEmployeeById(@PathVariable String institute_id, @PathVariable int parent_id,
+	public Map<String, Object> updateParentById(@PathVariable String institute_id, @PathVariable int parent_id,
 			@RequestBody ParentRequest parentRequest) {
 
 		Parent UpdatedParent = parentService.updateParent(parentRequest, institute_id, parent_id);

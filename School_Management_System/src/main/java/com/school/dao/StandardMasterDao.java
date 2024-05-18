@@ -50,29 +50,25 @@ public class StandardMasterDao implements StandardMasterService {
 	@Override
 	public List<StandardMaster> getAllStandard(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return standardmasterRepository.getAllStandard(i_id);
+		return standardmasterRepository.getAllStandard(institute_id1);
 	}
 
 	@Override
 	public List<StandardMaster> getActiveStandard(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return standardmasterRepository.getAllActiveStandard(i_id);
+		return standardmasterRepository.getAllActiveStandard(institute_id1);
 	}
 
 	@Override
 	public List<StandardMaster> getDeactiveStandard(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return standardmasterRepository.getAllDeactiveStandard(i_id);
+		return standardmasterRepository.getAllDeactiveStandard(institute_id1);
 	}
 
 	@Override
 	public StandardMaster getById(int standard_id, String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return standardmasterRepository.findByStandard_id(standard_id, i_id);
+		return standardmasterRepository.findByStandard_id(standard_id, institute_id1);
 	}
 
 }

@@ -153,7 +153,6 @@ public class TimeTableDao implements TimeTableService {
 	@Override
 	public int deleteTimetable(int timetable_id, String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
-
 		int deleted = timeTableRepository.deleteAllById(timetable_id, institute_id1);
 		if (deleted == 1) {
 			return 1;
@@ -166,14 +165,12 @@ public class TimeTableDao implements TimeTableService {
 	@Override
 	public List<TimeTable> getDeletedTimetables(String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
-
 		return timeTableRepository.deletedTimeTable(institute_id1);
 	}
 
 	@Override
 	public int activateTimetableById(int timetable_id, String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
-
 		int activated = timeTableRepository.activateTimetableById(timetable_id, institute_id1);
 		if (activated == 1) {
 			return 1;

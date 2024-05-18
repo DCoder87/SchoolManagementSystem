@@ -50,7 +50,7 @@ public class ParentDao implements ParentService {
 			parent.setMobile(parentRequest.getMobile());
 			parent.setOccupation(parentRequest.getOccupation());
 			parent.setParent_name(parentRequest.getParent_name());
-			parent.setStatus(i_id);
+			parent.setStatus(1);
 			parent.setInstitute(institute);
 
 			
@@ -77,7 +77,7 @@ public class ParentDao implements ParentService {
 			parent.setMobile(parentRequest.getMobile());
 			parent.setOccupation(parentRequest.getOccupation());
 			parent.setParent_name(parentRequest.getParent_name());
-			parent.setStatus(i_id);
+			parent.setStatus(1);
 			parent.setParent_id(id);
 			parent.setInstitute(institute);
 

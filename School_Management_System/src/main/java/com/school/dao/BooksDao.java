@@ -47,38 +47,28 @@ public class BooksDao implements BookService {
 
 	@Override
 	public List<Books> getAllBooks(String Institute_id) {
-	
+
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return bookRepository.getAllBooks(i_id);
+
+		return bookRepository.getAllBooks(institute_id1);
 	}
 
 	@Override
 	public List<Books> getActive(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return bookRepository.getAllActiveBooks(i_id);
+		return bookRepository.getAllActiveBooks(institute_id1);
 	}
 
 	@Override
 	public Books getById(int book_id, String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return bookRepository.findByBook_id(book_id, i_id);
+		return bookRepository.findByBook_id(book_id, institute_id1);
 	}
 
 	@Override
 	public List<Books> getDeactive(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return bookRepository.getAllActiveBooks(i_id); 
+		return bookRepository.getAllActiveBooks(institute_id1);
 	}
-	
-
-	
-
-
-
-	
 
 }

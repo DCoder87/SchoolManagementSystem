@@ -40,7 +40,6 @@ public class StudentAttendanceDao implements StudentAttendanceService {
 	@Override
 	public Optional<StudentAttendance> findById(int student_attendance_id, String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
-
 		Optional<StudentAttendance> user1 = studentAttendanceRepository.findAllById(student_attendance_id,
 				institute_id1);
 		return user1;
@@ -79,7 +78,7 @@ public class StudentAttendanceDao implements StudentAttendanceService {
 			existingAttendance.setStatus(1);
 			existingAttendance.setStudent_id(student);
 			Institute institute = new Institute();
-			institute.setInstitute_id(i_id);
+			institute.setInstitute_id(1);
 			existingAttendance.setInstitute(institute);
 
 			return studentAttendanceRepository.save(existingAttendance);
@@ -112,7 +111,7 @@ public class StudentAttendanceDao implements StudentAttendanceService {
 			existingAttendance.setStatus(1);
 			existingAttendance.setStudent_id(student);
 			Institute institute = new Institute();
-			institute.setInstitute_id(i_id);
+			institute.setInstitute_id(1);
 			existingAttendance.setInstitute(institute);
 
 			return studentAttendanceRepository.save(existingAttendance);
@@ -125,7 +124,6 @@ public class StudentAttendanceDao implements StudentAttendanceService {
 	@Override
 	public int deleteById(int student_attendance_id, String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
-
 		int deleted = studentAttendanceRepository.deleteAllById(student_attendance_id, institute_id1);
 		if (deleted == 1) {
 			return 1;
@@ -137,14 +135,12 @@ public class StudentAttendanceDao implements StudentAttendanceService {
 	@Override
 	public List<StudentAttendance> getDeletedStudent(String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
-
 		return studentAttendanceRepository.deletedStudent(institute_id1);
 	}
 
 	@Override
 	public int activeStudentById(int student_attendance_id, String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
-
 		int activated = studentAttendanceRepository.activeStudentById(student_attendance_id, institute_id1);
 		if (activated == 1) {
 			return 1;

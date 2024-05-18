@@ -13,14 +13,14 @@ public interface DocumentMasterRepository extends JpaRepository<DocumentMaster,I
 
 	
 	 @Query(value="SELECT * FROM document_master  WHERE documents_master_id = :documents_master_id AND Institute_id =:Institute_id", nativeQuery = true)
-	DocumentMaster findByDocuments_master_id(@Param("documents_master_id") int documents_master_id,@Param("Institute_id") int Institute_id);
+	DocumentMaster findByDocuments_master_id(@Param("documents_master_id") int documents_master_id,@Param("Institute_id") String Institute_id);
 	
 	@Query(value = "SELECT * FROM document_master WHERE status=1 AND Institute_id =:Institute_id", nativeQuery = true)
-	List<DocumentMaster> getAllActiveDocuments(@Param("Institute_id") int Institute_id);
+	List<DocumentMaster> getAllActiveDocuments(@Param("Institute_id") String Institute_id);
 	
 	@Query(value = "SELECT * FROM document_master WHERE status=0 AND Institute_id =:Institute_id", nativeQuery = true)
-	List<DocumentMaster> getAllDeactiveDocument(@Param("Institute_id") int Institute_id);
+	List<DocumentMaster> getAllDeactiveDocument(@Param("Institute_id") String Institute_id);
 	
 	@Query(value = "SELECT * FROM document_master WHERE Institute_id =:Institute_id", nativeQuery = true)
-	List<DocumentMaster> getAllDocuments(@Param("Institute_id") int Institute_id); 
+	List<DocumentMaster> getAllDocuments(@Param("Institute_id") String Institute_id); 
 }

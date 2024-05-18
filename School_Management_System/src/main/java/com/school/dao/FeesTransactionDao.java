@@ -66,7 +66,7 @@ public class FeesTransactionDao implements FeesTransactionService {
 			feesTransaction.setStudent(student);
 			feesTransaction.setTransaction_date(today);
 			feesTransaction.setTypemaster(transactiontypemaster);
-			feesTransaction.setStatus(i_id);
+			feesTransaction.setStatus(1);
 			feesTransaction.setInstitute(institute);
 
 			return feesTransactionRepository.save(feesTransaction);
@@ -102,7 +102,7 @@ public class FeesTransactionDao implements FeesTransactionService {
 			feesTransaction.setPaid_amount(feesTransactionRequest.getPaid_amount());
 			feesTransaction.setStudent(student);
 			feesTransaction.setTypemaster(transactiontypemaster);
-			feesTransaction.setStatus(i_id);
+			feesTransaction.setStatus(1);
 			feesTransaction.setTransaction_id(id);
 			feesTransaction.setInstitute(institute);
 
@@ -147,7 +147,7 @@ public class FeesTransactionDao implements FeesTransactionService {
 	}
 
 	@Override
-	public String getFeesTransactionsByFeesTransactionId(String transaction_id, String institute_id) {
+	public String getFeesTransactionsByFeesTransactionId(int transaction_id, String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
 		String feestransaction_id = feesTransactionRepository.getFeesTransactionsByFeesTransactionId(transaction_id,
 				institute_id1);

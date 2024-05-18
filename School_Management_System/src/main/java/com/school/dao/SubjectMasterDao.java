@@ -44,29 +44,25 @@ public class SubjectMasterDao implements SubjectMasterService {
 	@Override
 	public List<SubjectMaster> getAllSubject(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return subjectmasterRepository.getAllSubject(i_id);
+		return subjectmasterRepository.getAllSubject(institute_id1);
 	}
 
 	@Override
 	public List<SubjectMaster> getActiveSubejct(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return subjectmasterRepository.getAllActiveSubject(i_id);
+		return subjectmasterRepository.getAllActiveSubject(institute_id1);
 	}
 
 	@Override
 	public List<SubjectMaster> getDeactiveSubject(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return subjectmasterRepository.getAllDeactiveSubject(i_id);
+		return subjectmasterRepository.getAllDeactiveSubject(institute_id1);
 	}
 
 	@Override
 	public SubjectMaster getById(int subject_id, String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return subjectmasterRepository.findBySubject_id(subject_id, i_id);
+		return subjectmasterRepository.findBySubject_id(subject_id, institute_id1);
 	}
 
 	@Override

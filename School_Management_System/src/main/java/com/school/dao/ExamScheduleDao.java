@@ -49,7 +49,7 @@ public class ExamScheduleDao implements ExamScheduleService {
 			examSchedule.setExam_center(examScheduleRequest.getExam_center());
 			examSchedule.setSubjectMaster(subject);
 			examSchedule.setStandardMaster(standard);
-			examSchedule.setStatus(i_id);
+			examSchedule.setStatus(1);
 			examSchedule.setInstitute(institute);
 
 			return examScheduleRepository.save(examSchedule);
@@ -82,7 +82,7 @@ public class ExamScheduleDao implements ExamScheduleService {
 			examSchedule.setExam_center(examScheduleRequest.getExam_center());
 			examSchedule.setSubjectMaster(subject);
 			examSchedule.setStandardMaster(standard);
-			examSchedule.setStatus(i_id);
+			examSchedule.setStatus(1);
 			examSchedule.setInstitute(institute);
 
 			return examScheduleRepository.save(examSchedule);

@@ -30,5 +30,5 @@ public interface FeesTransactionRepository extends JpaRepository<FeesTransaction
     int activeByFeeId(@Param("fee_id") int fee_id, @Param("institute_id") String institue_id);
 
     @Query(value = "UPDATE Fees_Transaction FROM Fees_Transaction WHERE status=:1 AND transaction_id=:transaction_id  AND institute_id =:institute_id", nativeQuery = true)
-    String getFeesTransactionsByFeesTransactionId(@Param("transaction_id") String transaction_id, @Param("institute_id") String institue_id);
+    String getFeesTransactionsByFeesTransactionId(@Param("transaction_id") int transaction_id, @Param("institute_id") String institue_id);
 }

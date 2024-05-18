@@ -58,7 +58,7 @@ public class TeacherSubjectDao implements TeacherSubjectService {
 			teacherSubject.setStandardMaster(standard);
 			teacherSubject.setSubjectMaster(subject);
 			teacherSubject.setTeacher(teacher);
-			teacherSubject.setStatus(i_id);
+			teacherSubject.setStatus(1);
 
 			return teacherSubjectRepository.save(teacherSubject);
 		} catch (Exception e) {
@@ -91,7 +91,7 @@ public class TeacherSubjectDao implements TeacherSubjectService {
 			teacherSubject.setStandardMaster(standard);
 			teacherSubject.setSubjectMaster(subject);
 			teacherSubject.setTeacher(teacher);
-			teacherSubject.setStatus(i_id);
+			teacherSubject.setStatus(1);
 			teacherSubject.setMapped_id(mapped_id);
 
 			return teacherSubjectRepository.save(teacherSubject);

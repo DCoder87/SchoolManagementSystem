@@ -2,6 +2,8 @@ package com.school.request;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class StudentStandardRequest {
 	
 	private int student_id;
@@ -14,6 +16,7 @@ public class StudentStandardRequest {
 	 
 	 private int academic_end_year;
 	 
+	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	 private Date admission_date;
 
 	public int getStudent_id() {

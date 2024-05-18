@@ -53,7 +53,7 @@ public class TeacherAttendanceDao implements TeacherAttendanceService {
 		existingAttendance.setStatus(1);
 		existingAttendance.setTeacher_id(teacher);
 		Institute institute = new Institute();
-		institute.setInstitute_id(i_id);
+		institute.setInstitute_id(1);
 		existingAttendance.setInstitute(institute);
 		return teacherAttendanceRepository.save(existingAttendance);
 	} // Or throw an exception
@@ -61,7 +61,6 @@ public class TeacherAttendanceDao implements TeacherAttendanceService {
 	@Override
 	public Optional<TeacherAttendance> findByTeacherAttendanceId(int teacher_attendance_id, String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
-
 		return teacherAttendanceRepository.findAllById(teacher_attendance_id, institute_id1);
 	}
 
@@ -87,7 +86,7 @@ public class TeacherAttendanceDao implements TeacherAttendanceService {
 			existingAttendance.setStatus(1);
 			existingAttendance.setTeacher_id(teacher);
 			Institute institute = new Institute();
-			institute.setInstitute_id(i_id);
+			institute.setInstitute_id(1);
 			existingAttendance.setInstitute(institute);
 			return teacherAttendanceRepository.save(existingAttendance);
 		} else {
@@ -98,7 +97,6 @@ public class TeacherAttendanceDao implements TeacherAttendanceService {
 	@Override
 	public int deleteById(int teacher_attendance_id, String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
-
 		int deleted = teacherAttendanceRepository.deleteAllById(teacher_attendance_id, institute_id1);
 		if (deleted == 1) {
 			return 1;
@@ -110,7 +108,6 @@ public class TeacherAttendanceDao implements TeacherAttendanceService {
 	@Override
 	public int activeTeacherById(int teacher_attendance_id, String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
-
 		int activated = teacherAttendanceRepository.activeTeacherById(teacher_attendance_id, institute_id1);
 		if (activated == 1) {
 			return 1;
@@ -122,7 +119,6 @@ public class TeacherAttendanceDao implements TeacherAttendanceService {
 	@Override
 	public List<TeacherAttendance> getDeletedTeacher(String institute_id) {
 		String institute_id1 = decrypt.Decryption(institute_id);
-
 		return teacherAttendanceRepository.deletedTeacher(institute_id1);
 	}
 

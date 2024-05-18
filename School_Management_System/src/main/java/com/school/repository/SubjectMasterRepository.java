@@ -13,16 +13,16 @@ public interface SubjectMasterRepository extends JpaRepository<SubjectMaster,Int
 
 	
 	@Query(value="SELECT * FROM subject_master  WHERE subject_id = :subject_id AND Institute_id =:Institute_id", nativeQuery = true)
-	SubjectMaster findBySubject_id(@Param("subject_id") int subject_id,@Param("Institute_id") int Institute_id);
+	SubjectMaster findBySubject_id(@Param("subject_id") int subject_id,@Param("Institute_id") String Institute_id);
 	
 	@Query(value = "SELECT * FROM subject_master WHERE status=1 AND Institute_id =:Institute_id", nativeQuery = true)
-	List<SubjectMaster> getAllActiveSubject(@Param("Institute_id") int Institute_id);
+	List<SubjectMaster> getAllActiveSubject(@Param("Institute_id") String Institute_id);
 	
 	@Query(value = "SELECT * FROM subject_master WHERE status=0 AND Institute_id =:Institute_id", nativeQuery = true)
-	List<SubjectMaster> getAllDeactiveSubject(@Param("Institute_id") int Institute_id);
+	List<SubjectMaster> getAllDeactiveSubject(@Param("Institute_id") String Institute_id);
 	
 	@Query(value = "SELECT * FROM subject_master WHERE Institute_id =:Institute_id", nativeQuery = true)
-	List<SubjectMaster> getAllSubject(@Param("Institute_id") int Institute_id);
+	List<SubjectMaster> getAllSubject(@Param("Institute_id") String Institute_id);
 	
 	 
     

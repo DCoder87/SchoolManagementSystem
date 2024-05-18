@@ -60,7 +60,7 @@ public class BookController {
 				: JsonResponses.generateResponse1(false, null, "data found for this Id" + book_id + "");
 	}
 
-	@PutMapping("{institute_id}/{book_id}")
+	@PutMapping("{/update/institute_id}/{book_id}")
 	public Map<String, Object> updateBook(@PathVariable int book_id, @RequestBody BookRequest bookdata,
 			@PathVariable String institute_id) {
 		

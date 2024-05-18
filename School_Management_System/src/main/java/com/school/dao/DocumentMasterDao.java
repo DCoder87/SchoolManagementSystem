@@ -48,29 +48,25 @@ public class DocumentMasterDao implements DocumentMasterService {
 	@Override
 	public List<DocumentMaster> allDocuments(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return documentmasterRepository.getAllDocuments(i_id);
+		return documentmasterRepository.getAllDocuments(institute_id1);
 	}
 
 	@Override
 	public List<DocumentMaster> allActiveDocuments(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return documentmasterRepository.getAllActiveDocuments(i_id);
+		return documentmasterRepository.getAllActiveDocuments(institute_id1);
 	}
 
 	@Override
 	public List<DocumentMaster> allDeactiveDocuments(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return documentmasterRepository.getAllDeactiveDocument(i_id);
+		return documentmasterRepository.getAllDeactiveDocument(institute_id1);
 	}
 
 	@Override
 	public DocumentMaster getById(int document_master_id, String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return documentmasterRepository.findByDocuments_master_id(document_master_id, i_id);
+		return documentmasterRepository.findByDocuments_master_id(document_master_id, institute_id1);
 	}
 
 

@@ -46,29 +46,25 @@ public class TransactionTypeMasterDao implements TransactionTypeMasterService {
 	@Override
 	public List<TransactionTypeMaster> allTransactionType(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return transactiontypemasterRepository.getAllTransactions(i_id);
+		return transactiontypemasterRepository.getAllTransactions(institute_id1);
 	}
 
 	@Override
 	public List<TransactionTypeMaster> allActiveTransactionType(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return transactiontypemasterRepository.getAllActiveTransactions(i_id);
+		return transactiontypemasterRepository.getAllActiveTransactions(institute_id1);
 	}
 
 	@Override
 	public List<TransactionTypeMaster> allDeactiveTransactionType(String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return transactiontypemasterRepository.getAllDeactiveTransactions(i_id);
+		return transactiontypemasterRepository.getAllDeactiveTransactions(institute_id1);
 	}
 
 	@Override
 	public TransactionTypeMaster getById(int type_id, String Institute_id) {
 		String institute_id1 = decrypt.Decryption(Institute_id);
-		int i_id = Integer.parseInt(institute_id1);
-		return transactiontypemasterRepository.findByType_id(type_id, i_id);
+		return transactiontypemasterRepository.findByType_id(type_id, institute_id1);
 	}
 	
 	

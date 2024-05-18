@@ -22,6 +22,6 @@ public interface FeesTransactionService {
 
     List<FeesTransaction> getdeletedFeesTransactions(String institute_id);
 
-    String getFeesTransactionsByFeesTransactionId(String transaction_id, String institute_id);
+    String getFeesTransactionsByFeesTransactionId(int transaction_id, String institute_id);
 
 }

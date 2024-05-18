@@ -12,15 +12,15 @@ import com.school.beans.TransactionTypeMaster;
 public interface TransactionTypeMasterRepository extends JpaRepository<TransactionTypeMaster, Integer> {
 
 	@Query(value = "SELECT * FROM transaction_type_master  WHERE  type_id = :type_id AND Institute_id =:Institute_id", nativeQuery = true)
-	TransactionTypeMaster findByType_id(@Param("type_id") int type_id, @Param("Institute_id") int Institute_id);
+	TransactionTypeMaster findByType_id(@Param("type_id") int type_id, @Param("Institute_id") String Institute_id);
     
 	@Query(value = "SELECT * FROM transaction_type_master WHERE status=1 AND Institute_id =:Institute_id", nativeQuery = true)
-	List<TransactionTypeMaster> getAllActiveTransactions(@Param("Institute_id") int Institute_id);
+	List<TransactionTypeMaster> getAllActiveTransactions(@Param("Institute_id") String Institute_id);
 
 	@Query(value = "SELECT * FROM transaction_type_master WHERE status=0 AND Institute_id =:Institute_id", nativeQuery = true)
-	List<TransactionTypeMaster> getAllDeactiveTransactions(@Param("Institute_id") int Institute_id);
+	List<TransactionTypeMaster> getAllDeactiveTransactions(@Param("Institute_id") String Institute_id);
 
 	@Query(value = "SELECT * FROM transaction_type_master WHERE Institute_id =:Institute_id", nativeQuery = true)
-	List<TransactionTypeMaster> getAllTransactions(@Param("Institute_id") int Institute_id);
+	List<TransactionTypeMaster> getAllTransactions(@Param("Institute_id") String Institute_id);
 
 }
