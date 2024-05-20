@@ -1,6 +1,6 @@
 package com.school.beans;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -43,17 +41,14 @@ public class StudentStandard {
 	 
 	 private double grade;
 	 
-	 @Size(max = 32)
 	 @Column(length = 32)
 	 private int academic_start_year;
 	 
-	 @Size(max = 32)
 	 @Column(length = 32)
 	 private int academic_end_year;
 	 
-	 @NotNull
 	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	 private Date admission_date;
+	 private LocalDate admission_date;
 	 
 	 @Column(length = 2)
 	 private int status;
@@ -65,8 +60,8 @@ public class StudentStandard {
 	
 
 	public StudentStandard(int student_standard_id, @NotNull Institute institute, @NotNull Student student,
-			@NotNull StandardMaster standardmaster, double grade, @Size(max = 32) int academic_start_year,
-			@Size(max = 32) int academic_end_year, @NotNull Date admission_date, int status) {
+			@NotNull StandardMaster standardmaster, double grade, int academic_start_year,
+			int academic_end_year, LocalDate admission_date, int status) {
 		super();
 		this.student_standard_id = student_standard_id;
 		this.institute = institute;
@@ -137,11 +132,11 @@ public class StudentStandard {
 		this.academic_end_year = academic_end_year;
 	}
 
-	public Date getAdmission_date() {
+	public LocalDate getAdmission_date() {
 		return admission_date;
 	}
 
-	public void setAdmission_date(Date admission_date) {
+	public void setAdmission_date(LocalDate admission_date) {
 		this.admission_date = admission_date;
 	}
 	

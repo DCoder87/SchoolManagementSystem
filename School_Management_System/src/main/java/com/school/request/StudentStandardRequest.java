@@ -1,23 +1,24 @@
 package com.school.request;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class StudentStandardRequest {
-	
+
 	private int student_id;
-	
+
 	private int standard_id;
-	
-	 private double grade;
-	 
-	 private int academic_start_year;
-	 
-	 private int academic_end_year;
-	 
-	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	 private Date admission_date;
+
+	private double grade;
+
+	private int academic_start_year;
+
+	private int academic_end_year;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private LocalDate admission_date;
 
 	public int getStudent_id() {
 		return student_id;
@@ -39,7 +40,7 @@ public class StudentStandardRequest {
 		return academic_end_year;
 	}
 
-	public Date getAdmission_date() {
+	public LocalDate getAdmission_date() {
 		return admission_date;
 	}
 
@@ -49,6 +50,5 @@ public class StudentStandardRequest {
 				+ ", academic_start_year=" + academic_start_year + ", academic_end_year=" + academic_end_year
 				+ ", admission_date=" + admission_date + "]";
 	}
-	 
-	 
+
 }

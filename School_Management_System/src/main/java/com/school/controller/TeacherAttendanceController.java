@@ -66,7 +66,7 @@ public class TeacherAttendanceController {
 	}
 
 	// Update attendance
-	@PutMapping("/edit/{institute_id}/{teacher_attendance_id}")
+	@PutMapping("/update/{institute_id}/{teacher_attendance_id}")
 	public Map<String, Object> updateUserById(@PathVariable String institute_id,
 			@PathVariable int teacher_attendance_id, @RequestBody TeacherAttendanceRequest teacherAttendanceRequest) {
 

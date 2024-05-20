@@ -60,7 +60,7 @@ public class TimeTableController {
 	}
 
 	// Update a specific timetable
-	@PutMapping("/edit/{institute_id}/{timetable_id}")
+	@PutMapping("/update/{institute_id}/{timetable_id}")
 	public Map<String, Object> updateTimetable(@PathVariable String institute_id, @PathVariable int timetable_id,
 			@RequestBody TimeTableRequest timetable) {
 		try {

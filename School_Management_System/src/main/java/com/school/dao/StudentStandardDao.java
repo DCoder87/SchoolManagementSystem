@@ -18,126 +18,127 @@ import com.school.service.StudentStandardService;
 @Service
 public class StudentStandardDao implements StudentStandardService {
 
-    @Autowired
-    StudentStandardRepository studentStandardRepository;
+	@Autowired
+	StudentStandardRepository studentStandardRepository;
 
-    @Autowired
-    InstituteRepository institutionRepository;
+	@Autowired
+	InstituteRepository institutionRepository;
 
-    EncryptionAndDecryption decrypt = new EncryptionAndDecryption();
+	EncryptionAndDecryption decrypt = new EncryptionAndDecryption();
 
-    @Override
-    public List<StudentStandard> getallStudentStandards(String institute_id) {
-        String institute_id1 = decrypt.Decryption(institute_id);
-        return studentStandardRepository.ListOfAllStudentStandards(institute_id1);
-    }
+	@Override
+	public List<StudentStandard> getallStudentStandards(String institute_id) {
+		String institute_id1 = decrypt.Decryption(institute_id);
+		return studentStandardRepository.ListOfAllStudentStandards(institute_id1);
+	}
 
-    @Override
-    public boolean saveStudentStandard(StudentStandardRequest studentStandardRequest, String institute_id) {
+	@Override
+	public boolean saveStudentStandard(StudentStandardRequest studentStandardRequest, String institute_id) {
 
-        String institute_id1 = decrypt.Decryption(institute_id);
-        int i_id = Integer.parseInt(institute_id1);
+		String institute_id1 = decrypt.Decryption(institute_id);
+		int i_id = Integer.parseInt(institute_id1);
 
-        try {
-            Institute institute = new Institute();
-            institute.setInstitute_id(i_id);
-            
-            Student student = new Student();
-            student.setStudent_id(studentStandardRequest.getStudent_id());
-            
-            StandardMaster standard = new StandardMaster();
-            standard.setStandard_id(studentStandardRequest.getStandard_id());
+		try {
+			Institute institute = new Institute();
+			institute.setInstitute_id(i_id);
 
-            StudentStandard studentStandard = new StudentStandard();
-            studentStandard.setAcademic_end_year(studentStandardRequest.getAcademic_end_year());
-            studentStandard.setAcademic_start_year(studentStandardRequest.getAcademic_start_year());
-            studentStandard.setAdmission_date(studentStandardRequest.getAdmission_date());
-            studentStandard.setGrade(studentStandardRequest.getGrade());
-            studentStandard.setStudent(student);
-            studentStandard.setStandardmaster(standard);
-            studentStandard.setStatus(1);
-            studentStandard.setInstitute(institute);
+			Student student = new Student();
+			student.setStudent_id(studentStandardRequest.getStudent_id());
 
-            studentStandardRepository.save(studentStandard);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
+			StandardMaster standard = new StandardMaster();
+			standard.setStandard_id(studentStandardRequest.getStandard_id());
 
-    @Override
-    public boolean updateStudentStandard(StudentStandardRequest studentStandardRequest, String institute_id, int id) {
-        String institute_id1 = decrypt.Decryption(institute_id);
-        int i_id = Integer.parseInt(institute_id1);
+			StudentStandard studentStandard = new StudentStandard();
+			studentStandard.setAcademic_end_year(studentStandardRequest.getAcademic_end_year());
+			studentStandard.setAcademic_start_year(studentStandardRequest.getAcademic_start_year());
+			studentStandard.setAdmission_date(studentStandardRequest.getAdmission_date());
+			studentStandard.setGrade(studentStandardRequest.getGrade());
+			studentStandard.setStudent(student);
+			studentStandard.setStandardmaster(standard);
+			studentStandard.setStatus(1);
+			studentStandard.setInstitute(institute);
+			System.out.println(studentStandardRequest);
+			studentStandardRepository.save(studentStandard);
+			return true;
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+	}
 
-        try {
-            Institute institute = new Institute();
-            institute.setInstitute_id(i_id);
-            
-            Student student = new Student();
-            student.setStudent_id(studentStandardRequest.getStudent_id());
-            
-            StandardMaster standard = new StandardMaster();
-            standard.setStandard_id(studentStandardRequest.getStandard_id());
+	@Override
+	public boolean updateStudentStandard(StudentStandardRequest studentStandardRequest, String institute_id, int id) {
+		String institute_id1 = decrypt.Decryption(institute_id);
+		int i_id = Integer.parseInt(institute_id1);
 
-            StudentStandard studentStandard = new StudentStandard();
-            studentStandard.setAcademic_end_year(studentStandardRequest.getAcademic_end_year());
-            studentStandard.setAcademic_start_year(studentStandardRequest.getAcademic_start_year());
-            studentStandard.setAdmission_date(studentStandardRequest.getAdmission_date());
-            studentStandard.setGrade(studentStandardRequest.getGrade());
-            studentStandard.setStudent(student);
-            studentStandard.setStandardmaster(standard);
-            studentStandard.setStatus(1);
-            studentStandard.setStudent_standard_id(id);
-            studentStandard.setInstitute(institute);
+		try {
+			Institute institute = new Institute();
+			institute.setInstitute_id(i_id);
 
-            studentStandardRepository.save(studentStandard);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
+			Student student = new Student();
+			student.setStudent_id(studentStandardRequest.getStudent_id());
 
-    @Override
-    public Optional<StudentStandard> findStudentStandardById(int id, String institute_id) {
-        String institute_id1 = decrypt.Decryption(institute_id);
+			StandardMaster standard = new StandardMaster();
+			standard.setStandard_id(studentStandardRequest.getStandard_id());
 
-        return studentStandardRepository.findStudentStandardById(id, institute_id1);
-    }
+			StudentStandard studentStandard = new StudentStandard();
+			studentStandard.setAcademic_end_year(studentStandardRequest.getAcademic_end_year());
+			studentStandard.setAcademic_start_year(studentStandardRequest.getAcademic_start_year());
+			studentStandard.setAdmission_date(studentStandardRequest.getAdmission_date());
+			studentStandard.setGrade(studentStandardRequest.getGrade());
+			studentStandard.setStudent(student);
+			studentStandard.setStandardmaster(standard);
+			studentStandard.setStatus(1);
+			studentStandard.setStudent_standard_id(id);
+			studentStandard.setInstitute(institute);
 
-    @Override
-    public int deleteStudentStandardByid(int id, String institute_id) {
-        String institute_id1 = decrypt.Decryption(institute_id);
-        int deleted = studentStandardRepository.deleteByStandardId(id, institute_id1);
-        if (deleted == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
+			studentStandardRepository.save(studentStandard);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
-    @Override
-    public int activeStudentStandardByid(int id, String institute_id) {
-        String institute_id1 = decrypt.Decryption(institute_id);
-        int activated = studentStandardRepository.activeByStandardId(id, institute_id1);
-        if (activated == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
+	@Override
+	public Optional<StudentStandard> findStudentStandardById(int id, String institute_id) {
+		String institute_id1 = decrypt.Decryption(institute_id);
 
-    @Override
-    public List<StudentStandard> getdeletedStudentStandards(String institute_id) {
-        String institute_id1 = decrypt.Decryption(institute_id);
-        return studentStandardRepository.ListOfdeletedStudentStandards(institute_id1);
-    }
+		return studentStandardRepository.findStudentStandardById(id, institute_id1);
+	}
 
-    @Override
-    public String findStudentStandardByStudentStandardId(String standard_id, String institute_id) {
-        String institute_id1 = decrypt.Decryption(institute_id);
-        String s_id = studentStandardRepository.findStudentStandardByStandardId(standard_id, institute_id1);
-        return s_id;
-    }
+	@Override
+	public int deleteStudentStandardByid(int id, String institute_id) {
+		String institute_id1 = decrypt.Decryption(institute_id);
+		int deleted = studentStandardRepository.deleteByStandardId(id, institute_id1);
+		if (deleted == 1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int activeStudentStandardByid(int id, String institute_id) {
+		String institute_id1 = decrypt.Decryption(institute_id);
+		int activated = studentStandardRepository.activeByStandardId(id, institute_id1);
+		if (activated == 1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public List<StudentStandard> getdeletedStudentStandards(String institute_id) {
+		String institute_id1 = decrypt.Decryption(institute_id);
+		return studentStandardRepository.ListOfdeletedStudentStandards(institute_id1);
+	}
+
+	@Override
+	public String findStudentStandardByStudentStandardId(String standard_id, String institute_id) {
+		String institute_id1 = decrypt.Decryption(institute_id);
+		String s_id = studentStandardRepository.findStudentStandardByStandardId(standard_id, institute_id1);
+		return s_id;
+	}
 
 }
