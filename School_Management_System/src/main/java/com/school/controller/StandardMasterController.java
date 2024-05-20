@@ -50,7 +50,7 @@ public class StandardMasterController {
 	}
 	
 	@PutMapping("/update/{institute_id}/{standard_id}")
-	public Map<String,Object> updateStandard(@PathVariable String institute_id,int standard_id,@RequestBody  StandardMasterRequest standardmaster )
+	public Map<String,Object> updateStandard(@PathVariable String institute_id,@PathVariable int standard_id,@RequestBody  StandardMasterRequest standardmaster )
 	{
 		StandardMaster standard=standardmasterservice.getById(standard_id, institute_id);
 		
