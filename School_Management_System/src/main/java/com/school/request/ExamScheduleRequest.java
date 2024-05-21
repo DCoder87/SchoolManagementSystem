@@ -24,8 +24,6 @@ public class ExamScheduleRequest {
 
 	private String exam_center;
 
-	private int institute_id;
-
 	public ExamScheduleRequest() {
 		super();
 	}
@@ -58,16 +56,11 @@ public class ExamScheduleRequest {
 		return exam_center;
 	}
 
-	public int getInstitute_id() {
-		return institute_id;
-	}
-
 	@Override
 	public String toString() {
 		return "ExamScheduleRequest [exam_name=" + exam_name + ", subject_id=" + subject_id + ", student_standard_id="
 				+ student_standard_id + ", exam_date=" + exam_date + ", exam_start_time=" + exam_start_time
-				+ ", exam_end_time=" + exam_end_time + ", exam_center=" + exam_center + ", institute_id=" + institute_id
-				+ "]";
+				+ ", exam_end_time=" + exam_end_time + ", exam_center=" + exam_center + "]";
 	}
 
 }
