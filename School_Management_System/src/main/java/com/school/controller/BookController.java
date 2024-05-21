@@ -30,10 +30,10 @@ public class BookController {
 	InstituteRepository instituteRepository;
 
 	LocalDateTime today = LocalDateTime.now();
-	
+
 	@Autowired
 	BookRepository bookRepository;
-	
+
 	@Autowired
 	BookService bookService;
 
@@ -56,7 +56,7 @@ public class BookController {
 	}
 
 	@GetMapping("/edit/{institute_id}/{book_id}")
-	public Map<String, Object> getBookById(@PathVariable int book_id,@PathVariable String institute_id) {
+	public Map<String, Object> getBookById(@PathVariable int book_id, @PathVariable String institute_id) {
 
 		Books book = bookService.getById(book_id, institute_id);
 
@@ -64,27 +64,19 @@ public class BookController {
 				: JsonResponses.generateResponse1(false, null, "data found for this Id" + book_id + "");
 	}
 
-	@PutMapping("{/update/institute_id}/{book_id}")
-	public Map<String, Object> updateBook(@PathVariable int book_id, @RequestBody BookRequest bookdata,
-			@PathVariable String institute_id) {
-		
-		Books book = bookService.getById(book_id,institute_id);
+	@PutMapping("/update/{institute_id}/{book_id}")
+	public Map<String, Object> updateBookById(@PathVariable String institute_id, @PathVariable int book_id,
+			@RequestBody BookRequest bookRequest) {
 
-		if (book != null) {
-			
-			book.setBook_name(bookdata.getBook_name());
-			book.setBook_auther(bookdata.getBook_auther());
-			book.setBook_publisher(bookdata.getBook_publisher());
-			book.setQuantity(bookdata.getQuantity());
+		Books updatedBook = bookService.updateBook(bookRequest, institute_id, book_id);
 
-			return bookRepository.save(book) != null
-					? JsonResponses.generateResponse1(true, bookRepository.save(book), "book updated")
-					: JsonResponses.generateResponse1(false, bookdata, "Invalid data");
-
+		if (updatedBook != null) {
+			return JsonResponses.generateResponse1(true, bookRequest, "Book Data Updated Successfully");
+		} else {
+			return JsonResponses.generateResponse1(false, book_id, "Book Not Found for this ID: " + book_id);
 		}
-		return JsonResponses.generateResponse1(false, null, "data found for this Id" + book_id + "");
 	}
-	
+
 	@Transactional
 	@DeleteMapping("/delete/{institute_id}/{book_id}")
 	public Map<String, Object> deleteCalendarEventById(@PathVariable String institute_id, @PathVariable int book_id)

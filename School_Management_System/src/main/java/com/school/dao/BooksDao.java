@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.school.beans.Books;
 import com.school.beans.Institute;
+
 import com.school.repository.BookRepository;
 import com.school.request.BookRequest;
 import com.school.service.BookService;
@@ -44,6 +45,32 @@ public class BooksDao implements BookService {
 		}
 
 	}
+	
+	@Override
+	public Books updateBook(BookRequest book, String institute_id, int id) {
+		String institute_id1 = decrypt.Decryption(institute_id);
+		int i_id = Integer.parseInt(institute_id1);
+
+		try {
+			Institute institute = new Institute();
+			institute.setInstitute_id(i_id);
+
+			Books book1 = new Books();
+			book1.setBook_name(book.getBook_name());
+			book1.setBook_auther(book.getBook_auther());
+			book1.setBook_description(book.getBook_description());
+			book1.setBook_publisher(book.getBook_publisher());
+			book1.setQuantity(book.getQuantity());
+			book1.setStatus(1);
+			book1.setInstitute(institute);
+			book1.setBook_id(id);
+
+			return bookRepository.save(book1);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 
 	@Override
 	public List<Books> getAllBooks(String Institute_id) {
@@ -81,5 +108,7 @@ public class BooksDao implements BookService {
 			return 0;
 		}
 	}
+
+	
 
 }
