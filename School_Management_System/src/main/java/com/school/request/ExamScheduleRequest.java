@@ -3,6 +3,8 @@ package com.school.request;
 import java.sql.Time;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ExamScheduleRequest {
 
 	private String exam_name;
@@ -11,10 +13,13 @@ public class ExamScheduleRequest {
 
 	private int student_standard_id;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date exam_date;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
 	private Time exam_start_time;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
 	private Time exam_end_time;
 
 	private String exam_center;

@@ -56,44 +56,44 @@ public class FeesTransactionController {
 		}
 	}
 
-	@PutMapping("/update/{institute_id}/{fee_id}")
-	public Map<String, Object> updateFeesTransactionById(@PathVariable String institute_id, @PathVariable int fee_id,
+	@PutMapping("/update/{institute_id}/{transaction_id}")
+	public Map<String, Object> updateFeesTransactionById(@PathVariable String institute_id, @PathVariable int transaction_id,
 			@RequestBody FeesTransactionRequest feesTransactionRequest) {
 
 		FeesTransaction updatedFeesTransaction = feesTransactionService.updateFeesTransaction(feesTransactionRequest,
-				institute_id, fee_id);
+				institute_id, transaction_id);
 
 		if (updatedFeesTransaction != null) {
 			return JsonResponses.generateResponse1(true, feesTransactionRequest,
 					"Fees Transaction Data Updated Successfully");
 		} else {
-			return JsonResponses.generateResponse1(false, fee_id, "Fees Transaction Not Found for this ID: " + fee_id);
+			return JsonResponses.generateResponse1(false, transaction_id, "Fees Transaction Not Found for this ID: " + transaction_id);
 		}
 	}
 
 	@Transactional
-	@DeleteMapping("/delete/{institute_id}/{fee_id}")
-	public Map<String, Object> deleteFeesTransactionById(@PathVariable String institute_id, @PathVariable int fee_id)
+	@DeleteMapping("/delete/{institute_id}/{transaction_id}")
+	public Map<String, Object> deleteFeesTransactionById(@PathVariable String institute_id, @PathVariable int transaction_id)
 			throws Exception {
 
-		int deleted = feesTransactionService.deleteFeesTransactionByid(fee_id, institute_id);
+		int deleted = feesTransactionService.deleteFeesTransactionByid(transaction_id, institute_id);
 
 		if (deleted == 1) {
 			return JsonResponses.generateResponse2(true, "Fees Transaction Deleted Successfully");
 		} else {
-			return JsonResponses.generateResponse2(false, "No Fees Transaction Found For this ID " + fee_id);
+			return JsonResponses.generateResponse2(false, "No Fees Transaction Found For this ID " + transaction_id);
 		}
 
 	}
 
-	@GetMapping("/edit/{institute_id}/{fee_id}")
-	public Map<String, Object> findFeesTransactionById(@PathVariable String institute_id, @PathVariable int fee_id) {
-		Optional<FeesTransaction> feesTransaction = feesTransactionService.findFeesTransactionById(fee_id,
+	@GetMapping("/edit/{institute_id}/{transaction_id}")
+	public Map<String, Object> findFeesTransactionById(@PathVariable String institute_id, @PathVariable int transaction_id) {
+		Optional<FeesTransaction> feesTransaction = feesTransactionService.findFeesTransactionById(transaction_id,
 				institute_id);
 		if (feesTransaction.isPresent()) {
 			return JsonResponses.generateResponse1(true, feesTransaction, "Fees Transaction Data Fetched Successfully");
 		} else {
-			return JsonResponses.generateResponse1(false, fee_id, "Fees Transaction Not Found for Id " + fee_id);
+			return JsonResponses.generateResponse1(false, transaction_id, "Fees Transaction Not Found for Id " + transaction_id);
 		}
 	}
 

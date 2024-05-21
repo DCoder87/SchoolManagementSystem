@@ -17,6 +17,8 @@ public interface BookService {
 	
 	public Books getById(int book_id,String Institute_id);
 	
+	int deleteBookById(int id, String institute_id);
+	
 	
 	
 

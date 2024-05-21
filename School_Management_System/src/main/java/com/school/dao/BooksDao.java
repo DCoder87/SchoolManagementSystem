@@ -71,4 +71,15 @@ public class BooksDao implements BookService {
 		return bookRepository.getAllActiveBooks(institute_id1);
 	}
 
+	@Override
+	public int deleteBookById(int id, String institute_id) {
+		String institute_id1 = decrypt.Decryption(institute_id);
+		int deleted = bookRepository.deleteBookById(id, institute_id1);
+		if (deleted == 1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
 }

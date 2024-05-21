@@ -3,6 +3,7 @@ package com.school.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -24,5 +25,9 @@ public interface BookRepository extends JpaRepository<Books,Integer> {
 	
 	@Query(value = "SELECT * FROM books WHERE institute_id =:institute_id", nativeQuery = true)
 	List<Books> getAllBooks(@Param("institute_id") String institute_id);
+	
+	@Modifying
+	@Query(value = "UPDATE books SET status = 0 WHERE book_id = :book_id AND institute_id = :institute_id", nativeQuery = true)
+	int deleteBookById(@Param("book_id") int book_id, @Param("institute_id") String institute_id);
 	
 }

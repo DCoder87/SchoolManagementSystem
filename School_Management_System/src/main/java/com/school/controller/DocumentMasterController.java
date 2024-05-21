@@ -92,7 +92,7 @@ public class DocumentMasterController {
 		return JsonResponses.generateResponse1(false,null,"document not found for this Id"+document_master_id+"");
 	}
 	
-	@DeleteMapping("deactive/{institute_id}/{document_master_id}")
+	@DeleteMapping("delete/{institute_id}/{document_master_id}")
 	public Map<String,Object> deactiveDocumentMaster(@PathVariable int document_master_id,@PathVariable String institute_id)
 	{
 		DocumentMaster olddocumentmaster=documentmasterservice.getById(document_master_id, institute_id);
@@ -101,8 +101,8 @@ public class DocumentMasterController {
 			olddocumentmaster.setStatus(0);
 			DocumentMaster deactivedocument=documentmasterRepository.save(olddocumentmaster);
 			
-			return deactivedocument!=null?JsonResponses.generateResponse1(true, deactivedocument,"document Activated"):
-				JsonResponses.generateResponse1(false, deactivedocument,"Document Not Activated");
+			return deactivedocument!=null?JsonResponses.generateResponse1(true, deactivedocument,"Document Deleted Successfully"):
+				JsonResponses.generateResponse1(false, deactivedocument,"Document Deletion Failed");
 		}
 		return JsonResponses.generateResponse1(false,null,"document not found for this Id"+document_master_id+"");
 	}

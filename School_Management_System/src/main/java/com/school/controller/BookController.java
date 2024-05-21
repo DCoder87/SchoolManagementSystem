@@ -3,7 +3,11 @@ package com.school.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -79,6 +83,20 @@ public class BookController {
 
 		}
 		return JsonResponses.generateResponse1(false, null, "data found for this Id" + book_id + "");
+	}
+	
+	@Transactional
+	@DeleteMapping("/delete/{institute_id}/{book_id}")
+	public Map<String, Object> deleteCalendarEventById(@PathVariable String institute_id, @PathVariable int book_id)
+			throws Exception {
+
+		int deleted = bookService.deleteBookById(book_id, institute_id);
+
+		if (deleted == 1) {
+			return JsonResponses.generateResponse2(true, "Book Deleted Successfully");
+		} else {
+			return JsonResponses.generateResponse2(false, "No Book Found For this ID " + book_id);
+		}
 	}
 
 	@GetMapping("/active/{institute_id}")

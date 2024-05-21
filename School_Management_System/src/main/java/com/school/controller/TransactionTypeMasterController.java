@@ -127,7 +127,7 @@ public class TransactionTypeMasterController {
 		
 	}
 	
-	@DeleteMapping("deactive/{institute_id}/{transaction_type_id}")
+	@DeleteMapping("delete/{institute_id}/{transaction_type_id}")
 	public Map<String,Object> deactiveTransactionTypeMaster(@PathVariable int transaction_type_id,@PathVariable String institute_id)
 	{
 		TransactionTypeMaster transaction_type=transactiontypemasterService.getById(transaction_type_id, institute_id);
