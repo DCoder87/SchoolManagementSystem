@@ -60,7 +60,7 @@ public class DocumentMasterController {
 			JsonResponses.generateResponse1(false,null,"document not found for this Id"+document_master_id+"");
 	}
 	
-	@PutMapping("{institute_id}/{document_master_id}")
+	@PutMapping("{/update/{institute_id}/{document_master_id}")
 	
 	public Map<String,Object> updateDocument(@PathVariable int document_master_id,@RequestBody DocumentMasterRequest document,@PathVariable String institute_id)
 	{

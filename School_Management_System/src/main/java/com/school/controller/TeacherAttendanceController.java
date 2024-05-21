@@ -91,7 +91,7 @@ public class TeacherAttendanceController {
 	}
 
 	@Transactional
-	@DeleteMapping("/{institute_id}/{teacher_attendance_id}")
+	@DeleteMapping("/delete/{institute_id}/{teacher_attendance_id}")
 	public Map<String, Object> deleteAttendance(@PathVariable String institute_id,
 			@PathVariable int teacher_attendance_id) throws Exception {
 

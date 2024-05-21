@@ -89,7 +89,7 @@ public class TransactionTypeMasterController {
 	}
 	
 	
-	@PutMapping("/{transaction_type_id}/{institute_id}")
+	@PutMapping("/update/{transaction_type_id}/{institute_id}")
 	public Map<String,Object> updateTransactionType(@RequestBody TransactionTypeRequest transaction ,@PathVariable int transaction_type_id,@PathVariable String institute_id)
 	{
 		TransactionTypeMaster transaction_type=transactiontypemasterService.getById(transaction_type_id, institute_id);

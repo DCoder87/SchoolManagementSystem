@@ -56,7 +56,7 @@ public class SubjectMasterController {
 
 	}
 
-	@PutMapping("/{institute_id}/{subject_id}")
+	@PutMapping("/update/{institute_id}/{subject_id}")
 	public Map<String, Object> updatesubject(@RequestBody SubjectMasterRequest subject, @PathVariable int subject_id,
 			@PathVariable String institute_id) {
 		SubjectMaster oldsubject = subjectmasterservice.getById(subject_id, institute_id);

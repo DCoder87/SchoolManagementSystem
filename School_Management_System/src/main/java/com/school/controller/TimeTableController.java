@@ -78,7 +78,7 @@ public class TimeTableController {
 	}
 
 	@Transactional
-	@DeleteMapping("/{institute_id}/{timetable_id}")
+	@DeleteMapping("/delete/{institute_id}/{timetable_id}")
 	public Map<String, Object> deleteTimetable(@PathVariable String institute_id, @PathVariable int timetable_id) {
 
 		int deleted = timetableService.deleteTimetable(timetable_id, institute_id);
