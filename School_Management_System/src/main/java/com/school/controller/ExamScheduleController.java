@@ -28,10 +28,10 @@ public class ExamScheduleController {
 	@Autowired
 	ExamScheduleService examScheduleService;
 
-	@GetMapping("/{institution_id}")
-	public Map<String, Object> getExamSchedules(@PathVariable String institution_id) {
+	@GetMapping("/{institute_id}")
+	public Map<String, Object> getExamSchedules(@PathVariable String institute_id) {
 
-		List<ExamSchedule> allExamSchedules = examScheduleService.getallExamSchedules(institution_id);
+		List<ExamSchedule> allExamSchedules = examScheduleService.getallExamSchedules(institute_id);
 
 		if (allExamSchedules.isEmpty()) {
 			return JsonResponses.generateResponse1(false, allExamSchedules,

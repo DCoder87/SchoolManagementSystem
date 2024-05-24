@@ -28,10 +28,10 @@ public class TeacherSubjectController {
 	@Autowired
 	TeacherSubjectService teacherSubjectService;
 
-	@GetMapping("/{institution_id}")
-	public Map<String, Object> getTeacherSubjects(@PathVariable String institution_id) {
+	@GetMapping("/{institute_id}")
+	public Map<String, Object> getTeacherSubjects(@PathVariable String institute_id) {
 
-		List<TeacherSubject> allTeacherSubjects = teacherSubjectService.getAllTeacherSubjects(institution_id);
+		List<TeacherSubject> allTeacherSubjects = teacherSubjectService.getAllTeacherSubjects(institute_id);
 
 		if (allTeacherSubjects.isEmpty()) {
 			return JsonResponses.generateResponse1(false, allTeacherSubjects,

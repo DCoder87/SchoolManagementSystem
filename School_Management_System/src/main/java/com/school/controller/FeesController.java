@@ -28,10 +28,10 @@ public class FeesController {
 	@Autowired
 	FeesService feesService;
 
-	@GetMapping("/{institution_id}")
-	public Map<String, Object> getFees(@PathVariable String institution_id) {
+	@GetMapping("/{institute_id}")
+	public Map<String, Object> getFees(@PathVariable String institute_id) {
 
-		List<Fees> allFees = feesService.getallFees(institution_id);
+		List<Fees> allFees = feesService.getallFees(institute_id);
 
 		if (allFees.isEmpty()) {
 			return JsonResponses.generateResponse1(false, allFees, "Institution Id is Invalid Or List is Empty");

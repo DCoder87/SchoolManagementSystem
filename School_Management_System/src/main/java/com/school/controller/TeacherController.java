@@ -44,10 +44,10 @@ public class TeacherController {
 
 	EncryptionAndDecryption decrypt = new EncryptionAndDecryption();
 
-	@GetMapping("/{institution_id}")
-	public Map<String, Object> getTeachers(@PathVariable String institution_id) {
+	@GetMapping("/{institute_id}")
+	public Map<String, Object> getTeachers(@PathVariable String institute_id) {
 
-		List<Teacher> allTeachers = teacherService.getallTeachers(institution_id);
+		List<Teacher> allTeachers = teacherService.getallTeachers(institute_id);
 
 		if (allTeachers.isEmpty()) {
 			return JsonResponses.generateResponse1(false, allTeachers, "Institution Id is Invalid Or List is Empty");

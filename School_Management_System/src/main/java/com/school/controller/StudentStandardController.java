@@ -28,10 +28,10 @@ public class StudentStandardController {
     @Autowired
     StudentStandardService studentStandardService;
 
-    @GetMapping("/{institution_id}")
-    public Map<String, Object> getStudentStandards(@PathVariable String institution_id) {
+    @GetMapping("/{institute_id}")
+    public Map<String, Object> getStudentStandards(@PathVariable String institute_id) {
 
-        List<StudentStandard> allStudentStandards = studentStandardService.getallStudentStandards(institution_id);
+        List<StudentStandard> allStudentStandards = studentStandardService.getallStudentStandards(institute_id);
 
         if (allStudentStandards.isEmpty()) {
             return JsonResponses.generateResponse1(false, allStudentStandards, "Institution Id is Invalid Or List is Empty");

@@ -28,10 +28,10 @@ public class FeesTransactionController {
 	@Autowired
 	FeesTransactionService feesTransactionService;
 
-	@GetMapping("/{institution_id}")
-	public Map<String, Object> getFeesTransactions(@PathVariable String institution_id) {
+	@GetMapping("/{institute_id}")
+	public Map<String, Object> getFeesTransactions(@PathVariable String institute_id) {
 
-		List<FeesTransaction> allFeesTransactions = feesTransactionService.getallFeesTransactions(institution_id);
+		List<FeesTransaction> allFeesTransactions = feesTransactionService.getallFeesTransactions(institute_id);
 
 		if (allFeesTransactions.isEmpty()) {
 			return JsonResponses.generateResponse1(false, allFeesTransactions,

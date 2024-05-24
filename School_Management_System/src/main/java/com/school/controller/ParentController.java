@@ -28,10 +28,10 @@ public class ParentController {
 	@Autowired
 	ParentService parentService;
 	
-	@GetMapping("/{institution_id}")
-	public Map<String, Object> getParents(@PathVariable String institution_id) {
+	@GetMapping("/{institute_id}")
+	public Map<String, Object> getParents(@PathVariable String institute_id) {
 
-		List<Parent> allparents = parentService.getallParents(institution_id);
+		List<Parent> allparents = parentService.getallParents(institute_id);
 
 		if (allparents.isEmpty()) {
 			return JsonResponses.generateResponse1(false, allparents, "Institution Id is Invalid Or List is Empty");

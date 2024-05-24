@@ -28,16 +28,17 @@ public class CalenderEventController {
 	@Autowired
 	CalenderEventService calendarEventService;
 
-	@GetMapping("/{institution_id}")
-	public Map<String, Object> getCalendarEvents(@PathVariable String institution_id) {
+	@GetMapping("/{institute_id}")
+	public Map<String, Object> getCalendarEvents(@PathVariable String institute_id) {
 
-		List<CalenderEvent> allCalendarEvents = calendarEventService.getAllCalendarEvents(institution_id);
+		List<CalenderEvent> allCalendarEvents = calendarEventService.getAllCalendarEvents(institute_id);
 
 		if (allCalendarEvents.isEmpty()) {
-			return JsonResponses.generateResponse1(true, allCalendarEvents, "Calendar Events Details Got Successfully");
+			return JsonResponses.generateResponse1(true, allCalendarEvents,
+					"Institution Id is Invalid Or List is Empty");
 		} else {
 			return JsonResponses.generateResponse1(false, allCalendarEvents,
-					"Institution Id is Invalid Or List is Empty");
+					"Calendar Events Details Got Successfully");
 		}
 	}
 

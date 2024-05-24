@@ -21,56 +21,49 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class LibraryTransaction {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "library_trasaction_count")
-	@SequenceGenerator(name = "library_trasaction_count", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "library_transaction_count")
+	@SequenceGenerator(name = "library_transaction_count", initialValue = 1, allocationSize = 1)
 	@Column(length = 16)
 	private int library_transaction_id;
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="book_id",referencedColumnName="book_id")
+
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "book_id", referencedColumnName = "book_id")
 	private Books books;
-	
-	@OneToOne
-	@JoinColumn(name="borrowed_by", referencedColumnName = "student_id")
+
+	@OneToOne(cascade = { CascadeType.REFRESH })
+	@JoinColumn(name = "borrowed_by", referencedColumnName = "student_id")
 	private Student student;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date borrowed_date;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date returend_date;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date returned_date;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date due_date;
-	
-	@NotNull
-	@Size(max = 256)
-	@Column(length = 256)
+
+	//@Column(length = 256)
 	private int fine;
-	
-	@NotNull
-	@Size(max = 256)
-	@Column(length = 256)
+
+	@Column(length = 2)
 	private int status;
-	
-	 @NotNull
-	 @ManyToOne(cascade = {CascadeType.REFRESH})
-     @JoinColumn(name = "institute_id")
-	 private Institute institute ;
+
+	@NotNull
+	@ManyToOne(cascade = { CascadeType.REFRESH })
+	@JoinColumn(name = "institute_id")
+	private Institute institute;
 
 	public LibraryTransaction() {
-		super();
 	}
 
 	public LibraryTransaction(int library_transaction_id, Books books, Student student, Date borrowed_date,
-			Date returend_date, Date due_date, @NotNull @Size(max = 256) int fine, @NotNull @Size(max = 256) int status,
-			@NotNull Institute institute) {
-		super();
+			Date returned_date, Date due_date, int fine, int status, Institute institute) {
 		this.library_transaction_id = library_transaction_id;
 		this.books = books;
 		this.student = student;
 		this.borrowed_date = borrowed_date;
-		this.returend_date = returend_date;
+		this.returned_date = returned_date;
 		this.due_date = due_date;
 		this.fine = fine;
 		this.status = status;
@@ -109,12 +102,12 @@ public class LibraryTransaction {
 		this.borrowed_date = borrowed_date;
 	}
 
-	public Date getReturend_date() {
-		return returend_date;
+	public Date getReturned_date() {
+		return returned_date;
 	}
 
-	public void setReturend_date(Date returend_date) {
-		this.returend_date = returend_date;
+	public void setReturned_date(Date returned_date) {
+		this.returned_date = returned_date;
 	}
 
 	public Date getDue_date() {
@@ -151,10 +144,8 @@ public class LibraryTransaction {
 
 	@Override
 	public String toString() {
-		return "LibraryTransaction [library_transaction_id=" + library_transaction_id + ", books=" + books
-				+ ", student=" + student + ", borrowed_date=" + borrowed_date + ", returend_date=" + returend_date
-				+ ", due_date=" + due_date + ", fine=" + fine + ", status=" + status + ", institute=" + institute + "]";
+		return "LibraryTransaction{" + "library_transaction_id=" + library_transaction_id + ", books=" + books
+				+ ", student=" + student + ", borrowed_date=" + borrowed_date + ", returned_date=" + returned_date
+				+ ", due_date=" + due_date + ", fine=" + fine + ", status=" + status + ", institute=" + institute + '}';
 	}
-
-	 
 }
