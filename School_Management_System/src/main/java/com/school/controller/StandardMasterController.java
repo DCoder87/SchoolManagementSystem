@@ -39,7 +39,7 @@ public class StandardMasterController {
 			JsonResponses.generateResponse1(false, standardmaster,"Invalid-data");
 	}
 	
-	@GetMapping("{institute_id}")
+	@GetMapping("/{institute_id}")
 	public Map<String,Object> getAllStadards(@PathVariable String institute_id)
 	{
 	   List<StandardMaster> allstandard=standardmasterservice.getAllStandard(institute_id);
@@ -85,7 +85,7 @@ public class StandardMasterController {
 	   
 	}
 	
-	@GetMapping("edit/{Institute_id}/{standard_id}")
+	@GetMapping("/edit/{Institute_id}/{standard_id}")
 	public Map<String,Object> getStadardById(@PathVariable String Institute_id,@PathVariable int standard_id)
 	{
 		StandardMaster oldstandard=standardmasterservice.getById(standard_id, Institute_id);
@@ -111,7 +111,7 @@ public class StandardMasterController {
 		return JsonResponses.generateResponse1(false, standard_id,"Invalid-data");
 	}
 	
-	@DeleteMapping("active/{Institute_id}/{standard_id}")
+	@DeleteMapping("/delete/{Institute_id}/{standard_id}")
 	public Map<String,Object> deactivestandard(@PathVariable String Institute_id,@PathVariable int standard_id)
 	{
 		StandardMaster oldstandard=standardmasterservice.getById(standard_id, Institute_id);

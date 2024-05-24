@@ -48,6 +48,7 @@ public class StudentStandard {
 	 private int academic_end_year;
 	 
 	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	 @Column(name = "admission_date", nullable = true)
 	 private LocalDate admission_date;
 	 
 	 @Column(length = 2)

@@ -49,7 +49,7 @@ public class TimeTableController {
 	}
 
 	// Get a specific timetable by its ID
-	@GetMapping("/{institute_id}/{timetable_id}")
+	@GetMapping("/edit/{institute_id}/{timetable_id}")
 	public Map<String, Object> getTimetableById(@PathVariable String institute_id, @PathVariable int timetable_id) {
 		Optional<TimeTable> timetable = timetableService.getTimetableById(timetable_id, institute_id);
 		if (timetable != null) {

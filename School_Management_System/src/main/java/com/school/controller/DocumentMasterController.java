@@ -33,7 +33,7 @@ public class DocumentMasterController {
 	@Autowired
 	DocumentMasterService documentmasterservice;
 	
-	@PostMapping("{institute_id}")
+	@PostMapping("/{institute_id}")
 	public Map<String,Object> addDocument(@RequestBody DocumentMasterRequest document,@PathVariable String institute_id)
 	{
 		DocumentMaster savedocument=documentmasterservice.saveDocument(document, institute_id);
@@ -42,7 +42,7 @@ public class DocumentMasterController {
 			JsonResponses.generateResponse1(false,document,"document not saved");
 	}
 	
-	@GetMapping("{institute_id}")
+	@GetMapping("/{institute_id}")
 	public Map<String,Object> getAllDocuments(@PathVariable String institute_id)
 	{
 		 List<DocumentMaster> alldocument=documentmasterservice.allDocuments(institute_id);
@@ -51,7 +51,7 @@ public class DocumentMasterController {
 			JsonResponses.generateResponse1(false, alldocument,"None Documents found");
 	}
 	
-	@GetMapping("edit/{institute_id}/{document_master_id}")
+	@GetMapping("/edit/{institute_id}/{document_master_id}")
 	public Map<String,Object> getDocument(@PathVariable int document_master_id,@PathVariable String institute_id)
 	{
 		DocumentMaster olddocumentmaster=documentmasterservice.getById(document_master_id, institute_id);
@@ -60,7 +60,7 @@ public class DocumentMasterController {
 			JsonResponses.generateResponse1(false,null,"document not found for this Id"+document_master_id+"");
 	}
 	
-	@PutMapping("{/update/{institute_id}/{document_master_id}")
+	@PutMapping("/update/{institute_id}/{document_master_id}")
 	
 	public Map<String,Object> updateDocument(@PathVariable int document_master_id,@RequestBody DocumentMasterRequest document,@PathVariable String institute_id)
 	{

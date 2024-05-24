@@ -39,7 +39,7 @@ public class TransactionTypeMasterController {
 	
 	TransactionTypeMasterService transactiontypemasterService;
 	
-	@PostMapping("{institute_id}")
+	@PostMapping("/{institute_id}")
 	public Map<String,Object> saveTransactionType(@RequestBody TransactionTypeRequest transactiontype,@PathVariable String institute_id)
 	{
 		
@@ -50,7 +50,7 @@ public class TransactionTypeMasterController {
 			JsonResponses.generateResponse1(false,transaction, "Invalid-data");
 	}
 	
-	@GetMapping("{institute_id}")
+	@GetMapping("/{institute_id}")
 	 public Map<String,Object> getAllTransactionTypes(@PathVariable String institute_id)
 	 {
 		List<TransactionTypeMaster> alltrasactiontype=transactiontypemasterService.allTransactionType(institute_id);

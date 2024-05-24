@@ -34,7 +34,7 @@ public class SubjectMasterController {
 	@Autowired
 	SubjectMasterRepository subjectmasterRepository;
 
-	@PostMapping("{institute_id}")
+	@PostMapping("/{institute_id}")
 	public Map<String, Object> saveSubject(@RequestBody SubjectMasterRequest subject,
 			@PathVariable String institute_id) {
 
@@ -47,7 +47,7 @@ public class SubjectMasterController {
 
 	}
 
-	@GetMapping("{institute_id}")
+	@GetMapping("/{institute_id}")
 	public Map<String, Object> getallSubject(@PathVariable String institute_id) {
 		List<SubjectMaster> allsubjects = subjectmasterservice.getAllSubject(institute_id);
 
@@ -74,7 +74,7 @@ public class SubjectMasterController {
 
 	}
 
-	@GetMapping("edit/{institute_id}/{subject_id}")
+	@GetMapping("/edit/{institute_id}/{subject_id}")
 	public Map<String, Object> getSubject(@PathVariable int subject_id, @PathVariable String institute_id) {
 		SubjectMaster subjectdata = subjectmasterservice.getById(subject_id, institute_id);
 

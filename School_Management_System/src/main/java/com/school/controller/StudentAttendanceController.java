@@ -41,31 +41,22 @@ public class StudentAttendanceController {
 	}
 
 	// Add Attendance
-	@PostMapping("/{institute_id}")
+	@PostMapping("/update/{institute_id}/{student_attendance_id}")
 	public Map<String, Object> addAttendance(@RequestBody StudentAttendanceRequest studentAttendanceRequest,
-			@PathVariable String institute_id) {
-		try {
-			StudentAttendance details = studentAttendanceService.createAttendance(studentAttendanceRequest,
-					institute_id);
-			// If details is not null, attendance was created successfully
-			if (details != null) {
-				return JsonResponses.generateResponse1(true, details, "Student attendance added successfully");
-			} else {
-				// This block will not be reached if an exception is thrown in the
-				// createAttendance method
-				return JsonResponses.generateResponse1(false, null, "Student attendance data is invalid");
-			}
-		} catch (IllegalArgumentException e) {
-			// If attendance already exists or data is invalid
-			return JsonResponses.generateResponse1(false, null, e.getMessage());
-		} catch (Exception e) {
-			// Internal server error
-			return JsonResponses.generateResponse1(false, null, "Internal server error");
+			@PathVariable int student_attendance_id, @PathVariable String institute_id) {
+
+		StudentAttendance updatedStudentAttendance = studentAttendanceService
+				.updateStudentAttendance(studentAttendanceRequest, institute_id, student_attendance_id);
+		if (updatedStudentAttendance != null) {
+			return JsonResponses.generateResponse1(true, studentAttendanceRequest,
+					"Student attendance added successfully");
+		} else {
+			return JsonResponses.generateResponse1(false, student_attendance_id, "Student attendance data is invalid"+ student_attendance_id );
 		}
 	}
 
 	// get attendance
-	@GetMapping("/{institute_id}/{student_attendance_id}")
+	@GetMapping("/edit/{institute_id}/{student_attendance_id}")
 	public Map<String, Object> findUserById(@PathVariable String institute_id,
 			@PathVariable int student_attendance_id) {
 		Optional<StudentAttendance> OneUser = studentAttendanceService.findById(student_attendance_id, institute_id);
@@ -103,7 +94,7 @@ public class StudentAttendanceController {
 	}
 
 	@Transactional
-	@DeleteMapping("/{institute_id}/{student_attendance_id}")
+	@DeleteMapping("/delete/{institute_id}/{student_attendance_id}")
 	public Map<String, Object> deleteAttendance(@PathVariable String institute_id,
 			@PathVariable int student_attendance_id) throws Exception {
 

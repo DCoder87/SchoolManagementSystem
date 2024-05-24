@@ -37,7 +37,7 @@ public class BookController {
 	@Autowired
 	BookService bookService;
 
-	@PostMapping("{institute_id}")
+	@PostMapping("/{institute_id}")
 	public Map<String, Object> addbook(@RequestBody BookRequest book, @PathVariable String institute_id) {
 
 		Books book1 = bookService.saveBook(book, institute_id);
@@ -47,7 +47,7 @@ public class BookController {
 
 	}
 
-	@GetMapping("{institute_id}")
+	@GetMapping("/{institute_id}")
 	public Map<String, Object> allbooks(@PathVariable String institute_id) {
 		List<Books> allbooks = bookService.getAllBooks(institute_id);
 

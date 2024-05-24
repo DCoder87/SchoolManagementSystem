@@ -3,6 +3,8 @@ package com.school.dao;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ import com.school.beans.Student;
 import com.school.beans.StudentStandard;
 import com.school.repository.InstituteRepository;
 import com.school.repository.StudentStandardRepository;
+import com.school.request.GradeRequest;
 import com.school.request.StudentStandardRequest;
 import com.school.service.StudentStandardService;
 
@@ -139,6 +142,56 @@ public class StudentStandardDao implements StudentStandardService {
 		String institute_id1 = decrypt.Decryption(institute_id);
 		String s_id = studentStandardRepository.findStudentStandardByStandardId(standard_id, institute_id1);
 		return s_id;
+	}
+
+	@Override
+	@Transactional
+	public boolean updateBulkStudentStandard(List<GradeRequest> gradeRequests, String institute_id) {
+		try {
+			String institute_id1 = decrypt.Decryption(institute_id);
+			boolean success = true;
+
+			for (GradeRequest ssr : gradeRequests) {
+				StudentStandard studStandard = studentStandardRepository.findStudentStandardById2(ssr.getStandard_id(),
+						institute_id1, ssr.getStudent_id());
+				if (studStandard != null) {
+
+					double grade = ssr.getGrade();
+
+					if (grade > 35.0) {
+
+						int start_year = studStandard.getAcademic_start_year();
+						int end_year = studStandard.getAcademic_end_year();
+						int stud_stan_id = studStandard.getStudent_standard_id();
+
+						StandardMaster sm = studStandard.getStandardmaster();
+						int s_id = sm.getStandard_id();
+						StandardMaster newStandardMaster = new StandardMaster();
+						newStandardMaster.setStandard_id(s_id + 1);
+
+						studStandard.setGrade(grade);
+						studStandard.setAcademic_start_year(start_year + 1);
+						studStandard.setAcademic_end_year(end_year + 1);
+						studStandard.setAdmission_date(null);
+						studStandard.setStudent_standard_id(stud_stan_id);
+						studStandard.setStandardmaster(newStandardMaster);
+						studStandard.setStatus(1);
+						studentStandardRepository.save(studStandard);
+					} else {
+						studStandard.setGrade(grade);
+						studStandard.setStatus(0);
+						studentStandardRepository.save(studStandard);
+					}
+				} else {
+					success = false;
+				}
+			}
+			return success;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 }
