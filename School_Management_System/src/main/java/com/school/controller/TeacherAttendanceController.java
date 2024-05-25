@@ -52,7 +52,8 @@ public class TeacherAttendanceController {
 
 	}
 
-	@GetMapping("/{institute_id}/{teacher_attendance_id}")
+	//get attendance
+	@GetMapping("/edit/{institute_id}/{teacher_attendance_id}")
 	public Map<String, Object> findUserById(@PathVariable String institute_id,
 			@PathVariable int teacher_attendance_id) {
 		Optional<TeacherAttendance> OneUser = teacherAttendanceService.findByTeacherAttendanceId(teacher_attendance_id,
