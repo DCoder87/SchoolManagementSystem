@@ -23,5 +23,7 @@ public interface StudentAttendanceService {
 	List<StudentAttendance> getDeletedStudent(String institute_id);
 
 	int activeStudentById(int student_attendance_id, String institute_id);
+	
+	//public void markAbsentForMissingRecords(String instituteId, List<Integer> allStudentIds);
 
 }

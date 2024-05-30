@@ -18,6 +18,9 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 	@Query(value = "SELECT * FROM student WHERE status=1 AND institute_id =:institute_id", nativeQuery = true)
 	List<Student> ListOfAllStudents(@Param("institute_id") String institute_id);
 
+	@Query(value = "SELECT * FROM student WHERE institute_id =:institute_id", nativeQuery = true)
+	List<Student> ListOfEntireStudents(@Param("institute_id") String institute_id);
+
 	@Query(value = "SELECT * FROM student WHERE status=0 AND institute_id =:institute_id", nativeQuery = true)
 	List<Student> ListOfdeletedStudents(@Param("institute_id") String institute_id);
 

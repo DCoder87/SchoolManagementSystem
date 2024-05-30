@@ -1,8 +1,7 @@
 package com.school.dao;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
@@ -55,8 +54,9 @@ public class StudentAttendanceDao implements StudentAttendanceService {
 		int i_id = Integer.parseInt(institute_id1);
 
 		// Convert java.util.Date to LocalDate
-		Date date = studentAttendanceRequest.getDate();
-		LocalDate attendanceDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate date = studentAttendanceRequest.getDate();
+		// LocalDate attendanceDate =
+		// date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
 		// Check if attendance already exists for the given student ID and date
 		boolean attendanceExists = studentAttendanceRepository
@@ -64,7 +64,7 @@ public class StudentAttendanceDao implements StudentAttendanceService {
 
 		if (attendanceExists) {
 			throw new IllegalArgumentException("Attendance already exists for student ID "
-					+ studentAttendanceRequest.getStudent_id() + " on " + attendanceDate);
+					+ studentAttendanceRequest.getStudent_id() + " on " + date);
 		}
 
 		try {
@@ -78,7 +78,7 @@ public class StudentAttendanceDao implements StudentAttendanceService {
 			existingAttendance.setStatus(1);
 			existingAttendance.setStudent_id(student);
 			Institute institute = new Institute();
-			institute.setInstitute_id(1);
+			institute.setInstitute_id(i_id);
 			existingAttendance.setInstitute(institute);
 
 			return studentAttendanceRepository.save(existingAttendance);
@@ -111,12 +111,12 @@ public class StudentAttendanceDao implements StudentAttendanceService {
 			existingAttendance.setStatus(1);
 			existingAttendance.setStudent_id(student);
 			Institute institute = new Institute();
-			institute.setInstitute_id(1);
+			institute.setInstitute_id(i_id);
 			existingAttendance.setInstitute(institute);
 
 			return studentAttendanceRepository.save(existingAttendance);
 		} else {
-			return null; 
+			return null;
 		}
 
 	}
@@ -148,5 +148,51 @@ public class StudentAttendanceDao implements StudentAttendanceService {
 			return 0;
 		}
 	}
-
 }
+
+/*
+ * @Transactional
+ * 
+ * @Override public void markAbsentForMissingRecords(String instituteId,
+ * List<Integer> allStudentIds) { Date currentDate = new Date();
+ * 
+ * Calendar calendar = Calendar.getInstance(); calendar.setTime(currentDate);
+ * 
+ * int year = calendar.get(Calendar.YEAR); int month =
+ * calendar.get(Calendar.MONTH) + 1;
+ * 
+ * String institute_id1 = decrypt.Decryption(instituteId); //int i_id =
+ * Integer.parseInt(institute_id1);
+ * 
+ * for (int StudentId : allStudentIds) { StudentAttendance b =
+ * studentAttendanceRepository.findAttendancesIncludingToday(institute_id1,
+ * StudentId, currentDate);
+ * 
+ * if (b == null) {
+ * 
+ * StudentAttendance saa =
+ * studentAttendanceRepository.findStudentAttendanceById(StudentId,
+ * instituteId); //here StudentAttendance sa = new StudentAttendance();
+ * 
+ * Student student = new Student(); student.setStudent_id(StudentId);
+ * 
+ * // Institute institute = new Institute(); // institute.setInstitute_id(i_id);
+ * 
+ * sa.setDate(currentDate);
+ * 
+ * sa.setCheck_in_time(null); sa.setCheck_out_time(null); sa.setMonth_id(month);
+ * sa.setYear_id(year); sa.setLocation(saa.getLocation());
+ * sa.setStudent_id(student); // sa.setInstitute(institute);
+ * sa.setInstitute(saa.getInstitute()); sa.setStatus(0); StudentAttendance xyz =
+ * studentAttendanceRepository.save(sa); System.out.println(xyz);
+ * 
+ * } else {
+ * 
+ * }
+ * 
+ * }
+ * 
+ * } // iske bad unexpecdly
+ * 
+ * }
+ */

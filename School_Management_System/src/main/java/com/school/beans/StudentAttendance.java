@@ -1,6 +1,6 @@
 package com.school.beans;
 import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ public class StudentAttendance {
 	private Institute institute;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	private Date date;
+	private LocalDate date;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
 	private Time check_in_time;
@@ -56,7 +56,7 @@ public class StudentAttendance {
 		super();
 	}
 
-	public StudentAttendance(int student_attendance_id, Student student_id, Institute institute, Date date,
+	public StudentAttendance(int student_attendance_id, Student student_id, Institute institute, LocalDate date,
 			Time check_in_time, Time check_out_time, String location, int month_id, int year_id, int status) {
 		super();
 		this.student_attendance_id = student_attendance_id;
@@ -95,11 +95,11 @@ public class StudentAttendance {
 		this.institute = institute;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

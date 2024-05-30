@@ -1,7 +1,7 @@
 package com.school.request;
 
 import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -10,7 +10,7 @@ public class StudentAttendanceRequest {
 	private int student_id;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	private Date date;
+	private LocalDate date;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
 	private Time check_in_time;
@@ -31,7 +31,7 @@ public class StudentAttendanceRequest {
 		return student_id;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
